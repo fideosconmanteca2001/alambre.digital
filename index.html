@@ -254,6 +254,12 @@
       transform: translateY(-2px);
     }
 
+    .card-featured {
+      border: 1px solid rgba(255, 153, 0, 0.4);
+      background: rgba(20, 24, 33, 0.95);
+      box-shadow: 0 0 25px rgba(255, 153, 0, 0.08);
+    }
+
     .card-id {
       font-family: var(--font-code);
       font-size: 10px;
@@ -313,6 +319,7 @@
       margin-top: auto;
     }
 
+    /* Contenedor Canvas 3D Optimizado */
     .system-canvas-container {
       width: 100%;
       height: 200px;
@@ -380,7 +387,7 @@
       line-height: 1.6;
     }
 
-    /* ESTILOS DE LA MINIPESTAÑA FLOTANTE / MODAL MODULAR */
+    /* Modal Flotante */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -436,7 +443,7 @@
 
     .modal-title {
       font-family: var(--font-display);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       margin-bottom: 16px;
       line-height: 1.2;
@@ -526,11 +533,11 @@
 
     <ul class="nav-links" id="nav-links-menu">
       <li class="nav-item"><a href="#sistemas" onclick="closeMobileMenu()">Sistemas Integrados</a></li>
+      <li class="nav-item"><a href="#alambre-funnel" onclick="closeMobileMenu()">Alambre Funnel ★</a></li>
       <li class="nav-item"><a href="#alambre-mesh" onclick="closeMobileMenu()">Alambre Mesh</a></li>
       <li class="nav-item"><a href="#alambre-blueprint" onclick="closeMobileMenu()">Alambre Blueprint</a></li>
       <li class="nav-item"><a href="#alambre-core" onclick="closeMobileMenu()">Alambre Core</a></li>
       <li class="nav-item"><a href="#alambre-uptime" onclick="closeMobileMenu()">Alambre Uptime</a></li>
-      <li class="nav-item"><a href="#alambre-funnel" onclick="closeMobileMenu()">Alambre Funnel</a></li>
       <li class="nav-item"><a href="#resiliencia" onclick="closeMobileMenu()">Garantía Técnica</a></li>
       <li class="nav-item"><a href="#hablemos-de-frente" onclick="closeMobileMenu()">Filosofía</a></li>
     </ul>
@@ -544,7 +551,7 @@
       ALAMBRE.DIGITAL // <span style="color:var(--amber)">Arquitectura de Sistemas Integrados</span>
     </h1>
     <p class="hero-subtitle">
-      Desarrollamos infraestructura cloud robusta para empresas comerciales, mayoristas y distribuidoras. Conectamos tus canales de venta digital directamente con tu ERP (Tango, Bejerman, SAP) para eliminar la carga manual de datos, evitar quiebres de stock y garantizar consistencia fiscal absoluta.
+      Desarrollamos infraestructura cloud robusta para empresas comerciales, mayoristas y distribuidoras. Conectamos tus canales de venta digital directamente con tu ERP (Tango, Bejerman, SAP) para eliminar la carga manual de datos, evitar quiebres de stock y garantizar consistencia de información.
     </p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
       <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="padding: 12px 22px; font-size:12px; width:100%; max-width:280px;">AGENDAR EVALUACIÓN TÉCNICA</a>
@@ -559,8 +566,26 @@
       <h2 class="section-title">Catálogo de Soluciones y Sistemas</h2>
     </div>
 
+    <!-- SERVICIO ESTRELLA REPOSICIONADO: ALAMBRE FUNNEL AL INICIO -->
     <div class="grid-2">
       
+      <!-- SERVICIO 05: ALAMBRE FUNNEL (DESTACADO PRINCIPAL) -->
+      <article class="card card-featured" id="alambre-funnel" style="grid-column: span 2;">
+        <div class="card-id">📈 SERVICIO ESTRELLA // CLIENT JOURNEY & FUNNEL ANALYTICS</div>
+        <h2 class="card-code">ALAMBRE FUNNEL</h2>
+        <div class="card-trade-name">Auditoría de Embudo Comercial y Mapa de Conversión B2B / B2C</div>
+        
+        <div class="system-canvas-container" id="canvas-mesh-05"></div>
+
+        <p class="card-copy">
+          ¿Sabés exactamente en qué etapa de tu web o proceso de venta se te escapan los clientes? La mayoría de las PyMEs gastan plata en pauta y tráfico, pero desconocen dónde se frena el comprador, qué fricciones hay en el checkout o por qué un mayorista no vuelve a comprar. Con Alambre Funnel aplicamos un diagnóstico cuantitativo sobre todo el recorrido: analizamos los puntos de fuga, la captura de datos reales y el comportamiento de recompra para entregarte un mapa de optimización claro y orientado a rentabilidad.
+        </p>
+
+        <button onclick="openServiceModal('funnel')" class="card-explore-btn">
+          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE FUNNEL ➔ ]
+        </button>
+      </article>
+
       <!-- SERVICIO 01: ALAMBRE MESH -->
       <article class="card" id="alambre-mesh">
         <div class="card-id">📡 SISTEMA 01 // DATA SYNC & INTEGRATION</div>
@@ -570,7 +595,7 @@
         <div class="system-canvas-container" id="canvas-mesh-01"></div>
 
         <p class="card-copy">
-          ¿Hoy tu equipo administrativo pasa los pedidos que entran por la web a mano, uno por uno, a Tango Gestión para poder facturar? Eso es un quilombo, pierden tiempo y tipean mal los datos. Alambre Mesh es un puente invisible: apenas un cliente te compra y paga online, el pedido aparece cargado y facturado dentro de tu ERP al segundo, sin que nadie toque una sola tecla.
+          ¿Hoy tu equipo administrativo pasa los pedidos que entran por la web a mano, uno por uno, a Tango Gestión? Eso es un quilombo, pierden tiempo y tipean mal los datos. Alambre Mesh es un puente invisible: apenas un cliente te compra y paga online, el pedido aparece cargado dentro de tu ERP al segundo, garantizando que los datos de origen lleguen impecables sin que nadie toque una sola tecla.
         </p>
         <div class="card-highlight">
           🔒 SEGURO ANTI-CORTES: Si en tu oficina o depósito se corta internet o la luz, los pedidos no se pierden; se quedan guardados flotando en un búnker digital seguro y se impactan solos apenas vuelve el sistema.
@@ -590,7 +615,7 @@
         <div class="system-canvas-container" id="canvas-mesh-02"></div>
 
         <p class="card-copy">
-          Si revisás el sistema de tu empresa, seguro tenés al mismo cliente cargado tres veces: una vez con el DNI, otra con el CUIT de la sociedad y otra con un mail viejo. Eso te destruye los números de facturación y nadie sabe quién compra qué. Con Alambre Blueprint entramos con un bisturí digital, barremos la mugre de tus registros históricos y te dejamos la base de datos impecable. Vas a saber con un solo clic quién es el cliente que más plata te deja y qué producto se va a quedar sin stock antes de que pase.
+          Si revisás el sistema de tu empresa, seguro tenés al mismo cliente cargado tres veces: una vez con el DNI, otra con el CUIT de la sociedad y otra con un mail viejo. Eso te destruye los números y nadie sabe quién compra qué. Con Alambre Blueprint entramos con un bisturí digital, barremos la mugre de tus registros históricos y te dejamos la base de datos impecable bajo un identificador único contable.
         </p>
 
         <button onclick="openServiceModal('blueprint')" class="card-explore-btn">
@@ -602,12 +627,12 @@
       <article class="card" id="alambre-core">
         <div class="card-id">🛍️ SISTEMA 03 // CORPORATE E-COMMERCE IMPLEMENTATION</div>
         <h2 class="card-code">ALAMBRE CORE</h2>
-        <div class="card-trade-name">Tiendas online estructuradas para tu administración y contador</div>
+        <div class="card-trade-name">Tiendas online estructuradas para la captura exacta de datos</div>
         
         <div class="system-canvas-container" id="canvas-mesh-03"></div>
 
         <p class="card-copy">
-          La mayoría de las agencias de marketing te hacen una página web "linda", pero cuando un cliente te compra, el IVA está mal calculado, los códigos de producto no coinciden con tu depósito y a fin de mes tu contador se quiere pegar un tiro porque los números de la web no cierran con el balance de Tango. Nosotros hacemos tiendas Shopify estructuradas desde el diseño del código para discriminar el IVA de forma perfecta (21% o 10.5%), obligar la captura de datos fiscales reales del cliente en el checkout y asegurar que el impacto contable sea exacto. Cero descuadres, cero multas.
+          La mayoría de las agencias de marketing te hacen una página web "linda", pero cuando un cliente te compra, los datos vienen incompletos, los códigos de producto no coinciden con tu depósito y no sabés si el comprador es un Consumidor Final o un cliente B2B mayorista. Nosotros estructuramos tiendas Shopify desde el código para asegurar la captura real de datos en checkout e identificar con precisión el perfil del cliente.
         </p>
 
         <button onclick="openServiceModal('core')" class="card-explore-btn">
@@ -619,33 +644,16 @@
       <article class="card" id="alambre-uptime">
         <div class="card-id">🔐 SISTEMA 04 // CONTINUOUS SERVICE LEVEL AGREEMENT</div>
         <h2 class="card-code">ALAMBRE UPTIME</h2>
-        <div class="card-trade-name">El escudo anti-caídas y monitoreo automatizado 24/7</div>
+        <div class="card-trade-name">Red de seguridad, backup automatizado de procesos y soporte</div>
         
         <div class="system-canvas-container" id="canvas-mesh-04"></div>
 
         <p class="card-copy">
-          Si la web se te cae o el sistema de facturación se traba un sábado a la noche en pleno Hot Sale o CyberMonday, te quedás solo, no facturás y perdés millones de pesos. Con Alambre Uptime, nuestros sistemas inteligentes vigilan tus conexiones las 24 horas del día. Si un servidor local intenta fallar o se satura por exceso de compradores, las alarmas de software lo frenan de forma automática para proteger tus datos y nos envían una alerta directa al celular para intervenir de inmediato. Comprás paz mental para que tu negocio nunca deje de facturar.
+          Pagarle a alguien para que esté mirando una pantalla 24 horas es un gasto absurdo. Alambre Uptime es un sistema automático de respaldo de procesos: si tu servidor local se traba, se cae la red o falla un envío de datos, nuestra red de seguridad captura el evento, lo resguarda y lo reintenta automáticamente. Sumado a nuestro soporte de ingeniería directo para cuando necesitás resolver algo en serio.
         </p>
 
         <button onclick="openServiceModal('uptime')" class="card-explore-btn">
           [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE UPTIME ➔ ]
-        </button>
-      </article>
-
-      <!-- SERVICIO 05: ALAMBRE FUNNEL -->
-      <article class="card" id="alambre-funnel" style="grid-column: span 2;">
-        <div class="card-id">📈 SISTEMA 05 // CLIENT JOURNEY & FUNNEL ANALYTICS</div>
-        <h2 class="card-code">ALAMBRE FUNNEL</h2>
-        <div class="card-trade-name">Auditoría de Embudo Comercial y Mapa de Conversión B2B</div>
-        
-        <div class="system-canvas-container" id="canvas-mesh-05"></div>
-
-        <p class="card-copy">
-          ¿Sabés exactamente en qué etapa de tu web o proceso de venta se te escapan los clientes? La mayoría de las PyMEs miden el tráfico pero no entienden las fricciones de su checkout ni las caídas entre el interés inicial y la facturación real. Con Alambre Funnel aplicamos un diagnóstico cuantitativo sobre todo el recorrido del comprador: analizamos los puntos de fuga, la captura de datos fiscales en el checkout y la tasa de recompra histórica para entregarte un mapa de optimización claro y orientado a rentabilidad.
-        </p>
-
-        <button onclick="openServiceModal('funnel')" class="card-explore-btn">
-          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE FUNNEL ➔ ]
         </button>
       </article>
 
@@ -663,7 +671,7 @@
       <div class="card">
         <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px;">Protección contra Pérdida de Datos</h3>
         <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6;">
-          Cada pedido que entra a tu e-commerce se encola en una base de datos intermedia blindada. Si tu planta o administración se queda sin luz o internet, la información espera de forma segura en la nube y se impacta sola al restablecer el suministro, sin duplicar facturas ni perder registros.
+          Cada pedido que entra a tu e-commerce se encola en una base de datos intermedia blindada. Si tu planta o administración se queda sin luz o internet, la información espera de forma segura en la nube y se impacta sola al restablecer el suministro, sin duplicar registros ni perder ventas.
         </p>
       </div>
 
@@ -676,7 +684,7 @@
     </div>
   </section>
 
-  <!-- AGENDAR EVALUACIÓN -->
+  <!-- AGENDAR EVALUACIÓN CON EMBED DE BREVO MEETINGS -->
   <section class="container" id="agendar">
     <div class="section-title-wrapper">
       <span class="section-num">// SECCIÓN 03</span>
@@ -713,7 +721,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 04: TARJETAS DE MANIFIESTO -->
+  <!-- SECCIÓN 04: TARJETAS DE MANIFIESTO EN GRID SIMÉTRICO -->
   <section class="container" id="hablemos-de-frente">
     <div class="section-title-wrapper">
       <span class="section-num">// SECCIÓN 04</span>
@@ -721,6 +729,8 @@
     </div>
 
     <div class="grid-3">
+      
+      <!-- Tarjeta 1 -->
       <div class="card-manifesto">
         <div class="manifesto-tag">// ARGUMENTO 01 // IDIOMA REAL</div>
         <h3 class="manifesto-title">Atado con Alambre vs. Soluciones de Fondo</h3>
@@ -729,6 +739,7 @@
         </p>
       </div>
 
+      <!-- Tarjeta 2 -->
       <div class="card-manifesto">
         <div class="manifesto-tag">// ARGUMENTO 02 // CERO BIRI-BIRI</div>
         <h3 class="manifesto-title">Sin PowerPoints ni Humo de IA</h3>
@@ -737,13 +748,15 @@
         </p>
       </div>
 
+      <!-- Tarjeta 3 -->
       <div class="card-manifesto">
         <div class="manifesto-tag">// ARGUMENTO 03 // VISIÓN INTEGRAL</div>
         <h3 class="manifesto-title">Una Empresa Tiene Mil Problemas</h3>
         <p class="manifesto-body">
-          Entendemos que una PyME no vive solo de pauta o redes sociales. Hay problemas con el stock, la carga contable, ARCA y la logística. Para solucionarlos, primero hay que encargar la operación completa, mapearla con precisión y ejecutar.
+          Entendemos que una PyME no vive solo de pauta o redes sociales. Hay problemas con el stock, la carga contable y la logística. Para solucionarlos, primero hay que encargarse de la operación completa, mapearla con precisión y ejecutar.
         </p>
       </div>
+
     </div>
 
     <div style="margin-top: 36px; text-align: center;">
@@ -753,7 +766,7 @@
     </div>
   </section>
 
-  <!-- CONTENEDOR MODAL PESTAÑA FLOTANTE / EXTENDIDA -->
+  <!-- CONTENEDOR MODAL PESTAÑA FLOTANTE / EXTENDIDA CON REESTRUCTURACIÓN COMERCIAL DIRECTA -->
   <div class="modal-overlay" id="service-modal" onclick="closeServiceModalOnOverlay(event)">
     <div class="modal-sheet" id="modal-sheet">
       <button class="modal-close-btn" onclick="closeServiceModal()">[ CERRAR ✕ ]</button>
@@ -761,20 +774,17 @@
       <div class="modal-header-tag" id="modal-tag">// SISTEMA SPECIFICATION</div>
       <h2 class="modal-title" id="modal-title">ALAMBRE SYSTEM</h2>
       
-      <!-- Visualizador Mesh 3D dinámico dentro de la pestaña extendida -->
       <div class="modal-modal-canvas" id="modal-canvas-box"></div>
 
-      <div id="modal-body-content">
-        <!-- Inyección dinámica de beneficios y ficha técnica de cada producto -->
-      </div>
+      <div id="modal-body-content"></div>
 
       <div style="margin-top: 32px; border-top: 1px solid var(--border-grey); padding-top: 20px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
         <div>
-          <div style="font-family: var(--font-code); font-size: 11px; color: var(--amber);">¿LISTO PARA IMPLEMENTAR ESTE SISTEMA?</div>
-          <div style="font-size: 12px; color: var(--text-muted);">Coordiná una sesión técnica directa con nuestro equipo.</div>
+          <div style="font-family: var(--font-code); font-size: 11px; color: var(--amber);">¿LISTO PARA RESOLVER ESTE PROBLEMA DE FONDO?</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Sin compromisos ni PowerPoints. Auditoría técnica directa.</div>
         </div>
         <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">
-          AGENDAR AUDITORÍA DE ESTE SERVICIO
+          AGENDAR AUDITORÍA
         </a>
       </div>
     </div>
@@ -876,76 +886,73 @@
       return { group: g, geometry, mesh, points, ptsMat, wireMat };
     }
 
-    // BASE DE DATOS DE ESPECIFICACIONES EXTENDIDAS B2B
+    // BASE DE DATOS REESTRUCTURADA CON ARGUMENTOS DE VENTA DIRECTOS Y REALES
     const serviceSpecs = {
+      funnel: {
+        tag: "// SISTEMA 05 // SERVICIO ESTRELLA // FICHA EXTENDIDA",
+        title: "ALAMBRE FUNNEL — Auditoría de Embudo Comercial B2B / B2C",
+        geomType: "funnel",
+        content: `
+          <h4 class="modal-section-h4">El Problema Real en tus Ventas:</h4>
+          <p class="modal-copy-p">Gastás plata en pauta o redes pero no entendés por qué la gente llega a la web y se va sin comprar. Medís visitas pero no tenés idea de dónde se frena el usuario, por qué un cliente B2B abandona el carrito o por qué no te vuelven a comprar.</p>
+          
+          <h4 class="modal-section-h4">Solución Comercial & Mapa de Acción:</h4>
+          <p class="modal-copy-p"><b>• Diagnóstico Cuantitativo Completo:</b> Analizamos todo el recorrido del comprador desde la entrada hasta la confirmación para detectar los puntos exactos de fuga.</p>
+          <p class="modal-copy-p"><b>• Identificación de Fricciones en Checkout:</b> Eliminamos pasos innecesarios que hacen perder compras impulsivas o pedidos de mayoristas.</p>
+          <p class="modal-copy-p"><b>• Estrategia de Recompra:</b> Medición del comportamiento histórico para activar flujo constante de venta recurrente.</p>
+        `
+      },
       mesh: {
-        tag: "// SISTEMA 01 // ESPECIFICACIÓN EXTENDIDA",
-        title: "ALAMBRE MESH — Pasador Automático de Pedidos B2B",
+        tag: "// SISTEMA 01 // FICHA TÉCNICA EXTENDIDA",
+        title: "ALAMBRE MESH — Pasador Automático de Pedidos (Shopify/Woo ⇄ ERP)",
         geomType: "mesh",
         content: `
-          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
-          <p class="modal-copy-p">Cargar pedidos a mano desde Shopify, WooCommerce o WhatsApp hacia Tango Gestión o SAP genera cuellos de botella diarios, errores tipográficos en el CUIT/DNI y horas perdidas de personal administrativo que debería estar vendiendo.</p>
+          <h4 class="modal-section-h4">El Problema Real en tu Oficina:</h4>
+          <p class="modal-copy-p">Tu gente se equivoca tipeando. ¿Cuántos errores cometieron este mes al pasar pedidos a mano? Si estás leyendo esto es porque sabés de algunos, pero imaginate los que ni te enteraste: productos mal cargados y horas perdidas tipeando datos que ya entraron digitales.</p>
           
-          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
-          <p class="modal-copy-p"><b>• Sincronización en 0.4 segundos:</b> Cada venta confirmada impacta de inmediato en el ERP con facturación automática.</p>
-          <p class="modal-copy-p"><b>• Búnker de Resiliencia Cloud:</b> Si tu planta o depósito pierde luz o internet, las ventas flotan de forma segura en la nube y se procesan al restablecer la red.</p>
-          <p class="modal-copy-p"><b>• Cero iPaaS Perpetuos:</b> Desarrollamos código propio que corre en tu nube. No pagás comisiones en dólares por pedido cargado.</p>
+          <h4 class="modal-section-h4">Garantía de Integración & Cero Duplicados:</h4>
+          <p class="modal-copy-p"><b>• Cero Tipeo Manual:</b> El pedido entra tal cual lo pagó el cliente online y aparece listo dentro de Tango, Bejerman o SAP al instante.</p>
+          <p class="modal-copy-p"><b>• Resiliencia Anti-Cortes:</b> Si en tu depósito se corta internet o la luz, los datos flotan en un búnker digital seguro y se impactan solos apenas vuelve la red, previniendo duplicados.</p>
+          <p class="modal-copy-p"><b>• Sin Apps Fantasma en Dólares:</b> No te encajamos 5 conectores genéricos que cobran comisiones por pedido. Es código propio en tu nube respaldado por nuestro soporte técnico mensual.</p>
         `
       },
       blueprint: {
-        tag: "// SISTEMA 02 // ESPECIFICACIÓN EXTENDIDA",
+        tag: "// SISTEMA 02 // FICHA TÉCNICA EXTENDIDA",
         title: "ALAMBRE BLUEPRINT — Saneamiento y Estructura de Datos",
         geomType: "blueprint",
         content: `
-          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
-          <p class="modal-copy-p">Tener al mismo cliente registrado con CUIT, DNI y correos diferentes destruye la trazabilidad contable, duplica perfiles de facturación y distorsiona el balance de ventas reales.</p>
+          <h4 class="modal-section-h4">El Problema Real en tu Sistema:</h4>
+          <p class="modal-copy-p">Tenés al mismo cliente cargado 4 veces con CUIT, DNI y correos diferentes. Tu sistema es un cementerio de datos duplicados y tu equipo pierde horas buscando fichas reales mientras nadie sabe quién compra qué.</p>
           
-          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
-          <p class="modal-copy-p"><b>• Identificador Único Fiscal:</b> Consolidación de registros bajo CUIT/DNI garantizando auditoría limpia.</p>
-          <p class="modal-copy-p"><b>• Normalización de Históricos:</b> Depuración de registros duplicados en Tango, Bejerman o CRM comerciales.</p>
-          <p class="modal-copy-p"><b>• Predicción de Recompra:</b> Reportes limpios para saber qué cliente genera mayor margen y qué stock se agotará.</p>
+          <h4 class="modal-section-h4">Eficacia Garantizada:</h4>
+          <p class="modal-copy-p"><b>• Identificador Único Contable:</b> Entramos con un bisturí digital, barremos la mugre de tus registros históricos y unificamos todo bajo el CUIT/DNI real del comprador.</p>
+          <p class="modal-copy-p"><b>• Información Relevante para Tomar Decisiones:</b> Al limpiar tu base de datos, sabés con un solo clic quién es el cliente que más plata te deja y qué producto se va a agotar antes de que pase.</p>
         `
       },
       core: {
-        tag: "// SISTEMA 03 // ESPECIFICACIÓN EXTENDIDA",
-        title: "ALAMBRE CORE — E-commerce Estructurado para Administración",
+        tag: "// SISTEMA 03 // FICHA TÉCNICA EXTENDIDA",
+        title: "ALAMBRE CORE — Tiendas E-commerce ESTRUCTURADAS para Captura Real de Datos",
         geomType: "core",
         content: `
-          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
-          <p class="modal-copy-p">Las tiendas web tradicionales diseñadas por agencias de marketing suelen descuidar el impacto fiscal: no discriminan IVA correctamente y generan multas y descuadres con el contador a fin de mes.</p>
+          <h4 class="modal-section-h4">El Problema Real con las Agencias Tradicionales:</h4>
+          <p class="modal-copy-p">Las agencias de marketing te hacen una página web "linda", pero los datos vienen incompletos, los códigos de producto no coinciden con tu depósito y no sabés si el comprador es un Consumidor Final o un mayorista B2B.</p>
           
-          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
-          <p class="modal-copy-p"><b>• Matriz Impositiva Exacta:</b> Discriminación precisa de IVA (21% / 10.5%) y percepción fiscal desde el checkout.</p>
-          <p class="modal-copy-p"><b>• Mapeo EstricTO de SKUs:</b> Sincronización exacta entre el catálogo digital y el inventario físico de tu depósito.</p>
-          <p class="modal-copy-p"><b>• Cierre Contable Automatizado:</b> Cero ajustes manuales entre las pasarelas de pago (Mercado Pago / Stripe) y el balance ERP.</p>
+          <h4 class="modal-section-h4">Estructura de Código de Verdad:</h4>
+          <p class="modal-copy-p"><b>• Captura Exacta en Checkout:</b> Obligamos la captura de datos reales del cliente e identificamos de entrada si es B2B o Consumidor Final.</p>
+          <p class="modal-copy-p"><b>• Sincronización Estricta de SKUs:</b> Cero descuadres entre el catálogo digital de Shopify/WooCommerce y el inventario real de tu depósito.</p>
         `
       },
       uptime: {
-        tag: "// SISTEMA 04 // ESPECIFICACIÓN EXTENDIDA",
-        title: "ALAMBRE UPTIME — Monitoreo Preventivo & SLA 24/7",
+        tag: "// SISTEMA 04 // FICHA TÉCNICA EXTENDIDA",
+        title: "ALAMBRE UPTIME — Red de Seguridad, Backup de Procesos y Soporte",
         geomType: "uptime",
         content: `
-          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
-          <p class="modal-copy-p">Una caída de servidor o un fallo en el ERP local durante eventos masivos como Hot Sale o CyberMonday cuesta millones de pesos en ventas no concretadas.</p>
+          <h4 class="modal-section-h4">El Problema Real:</h4>
+          <p class="modal-copy-p">Pagarle a un empleado para que esté mirando una pantalla las 24 horas es un gasto absurdo. Pero si el servidor se traba un fin de semana, necesitás una red que responda sola.</p>
           
-          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
-          <p class="modal-copy-p"><b>• Monitoreo de Conexión 24/7:</b> Vigilancia activa sobre servidores locales con alertas inmediatas al equipo de ingeniería.</p>
-          <p class="modal-copy-p"><b>• Escudo Anti-Saturación:</b> Control automático de carga para evitar que picos de tráfico tumben tu sistema de facturación.</p>
-          <p class="modal-copy-p"><b>• Guardia Técnica Dedicada:</b> Cobertura de ingeniería durante días de alta demanda comercial.</p>
-        `
-      },
-      funnel: {
-        tag: "// SISTEMA 05 // ESPECIFICACIÓN EXTENDIDA",
-        title: "ALAMBRE FUNNEL — Auditoría de Embudo Comercial B2B",
-        geomType: "funnel",
-        content: `
-          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
-          <p class="modal-copy-p">Muchas PyMEs invierten en pauta y tráfico pero desconocen exactamente en qué paso del checkout o proceso comercial se cae la venta.</p>
-          
-          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
-          <p class="modal-copy-p"><b>• Mapeo de Puntos de Fuga:</b> Diagnóstico cuantitativo sobre la fricción en el carrito y la captura de datos fiscales.</p>
-          <p class="modal-copy-p"><b>• Análisis de Recompra B2B:</b> Medición del LTV (Valor de Vida del Cliente) y tasas de conversión real.</p>
-          <p class="modal-copy-p"><b>• Plan de Acción Cuantitativo:</b> Mapa de optimización claro orientado a rentabilidad sin humo publicitario.</p>
+          <h4 class="modal-section-h4">Resguardo Automático & Respuesta Directa:</h4>
+          <p class="modal-copy-p"><b>• Backup de Procesos Automático:</b> Si la red local o el ERP se traban, el sistema resguarda cada transacción y la reintenta automáticamente al restablecerse.</p>
+          <p class="modal-copy-p"><b>• Soporte de Ingeniería Real:</b> Tenés comunicación directa con la gente que programó tu sistema para resolver problemas operativos cuando importan.</p>
         `
       }
     };
@@ -964,7 +971,6 @@
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
 
-      // Render de la Malla 3D dentro del Modal
       setTimeout(() => {
         const box = document.getElementById('modal-canvas-box');
         box.innerHTML = '';
