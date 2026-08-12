@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>ALAMBRE.DIGITAL — Arquitectura de Sistemas Integrados</title>
+  
+  <!-- SEO & AI Indexing Meta Tags -->
+  <meta name="description" content="Infraestructura cloud redundante e integración e-commerce ERP (Tango, Bejerman, SAP) para empresas comerciales y distribuidoras en Argentina. Cero pérdida de datos.">
+  <meta name="keywords" content="integracion tango gestion, shopify erp argentina, automatizacion e-commerce, alambre digital, middleware B2B">
+  <link rel="canonical" href="https://alambre.digital/">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307080A'/><path d='M 18,18 L 82,18 L 82,82 L 38,82 L 38,42 L 62,42' fill='none' stroke='%23FF9900' stroke-width='12' stroke-linecap='square'/></svg>">
+
+  <!-- Brevo Meetings Popup Assets -->
+  <link href="https://meetings.brevo.com/assets/styles/popup.css" rel="stylesheet" />
+  <script src="https://meetings.brevo.com/assets/libs/popup.min.js" type="text/javascript"></script>
+
+  <!-- Tipografías Oficiales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Three.js Engine (WebGL 3D) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #07080a;
+      --card-bg: rgba(15, 18, 25, 0.9);
+      --amber: #ff9900;
+      --amber-glow: rgba(255, 153, 0, 0.15);
+      --border-grey: #1e222a;
+      --text-main: #f0f4f8;
+      --text-muted: #94a3b8;
+      --green-ok: #22c55e;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #030405;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+
+    body {
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(255, 153, 0, 0.06) 0%, transparent 60%),
+        linear-gradient(rgba(30, 34, 42, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 34, 42, 0.4) 1px, transparent 1px);
+      background-size: 100% 100%, 64px 64px, 64px 64px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Barra Superior CRT */
+    .top-status-bar {
+      background: rgba(7, 8, 10, 0.95);
+      border-bottom: 1px solid var(--border-grey);
+      padding: 6px 16px;
+      font-family: var(--font-code);
+      font-size: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1001;
+      backdrop-filter: blur(8px);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green-ok);
+    }
+    .status-dot {
+      width: 8px; height: 8px; background: var(--green-ok); border-radius: 50%;
+      box-shadow: 0 0 8px var(--green-ok);
+    }
+
+    /* Header Navigation & Mobile Menu */
+    header.main-header {
+      border-bottom: 1px solid var(--border-grey);
+      background: rgba(7, 8, 10, 0.85);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 28px;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      width: 100%;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-item {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-item:hover { color: var(--amber); }
+
+    .btn-cta {
+      background: var(--amber);
+      color: var(--bg-dark);
+      font-family: var(--font-code);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      border: 1px solid var(--amber);
+      text-transform: uppercase;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn-cta:hover {
+      background: transparent;
+      color: var(--amber);
+      box-shadow: 0 0 15px var(--amber-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      font-family: var(--font-code);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      border: 1px solid var(--border-grey);
+      text-transform: uppercase;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-grey);
+      color: var(--amber);
+      padding: 6px 10px;
+      font-family: var(--font-code);
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 16px;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 50px 10px 30px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      max-width: 860px;
+      margin: 0 auto 32px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .section-title-wrapper {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-grey);
+      padding-bottom: 14px;
+    }
+
+    .section-num {
+      font-family: var(--font-code);
+      color: var(--amber);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-grey);
+      border-radius: 8px;
+      padding: 24px 16px;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      scroll-margin-top: 100px;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: rgba(255, 153, 0, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .card-id {
+      font-family: var(--font-code);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .card-code {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--amber);
+      margin: 4px 0 2px;
+    }
+
+    .card-trade-name {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .card-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .card-explore-btn {
+      margin-top: 16px;
+      padding: 10px 12px;
+      font-family: var(--font-code);
+      font-size: 11px;
+      border: 1px solid var(--border-grey);
+      color: var(--amber);
+      border-radius: 4px;
+      text-align: center;
+      transition: all 0.2s;
+      background: rgba(7, 8, 10, 0.6);
+      cursor: pointer;
+    }
+    .card-explore-btn:hover {
+      border-color: var(--amber);
+      background: var(--amber-glow);
+    }
+
+    .card-highlight {
+      background: rgba(255, 153, 0, 0.05);
+      border: 1px solid rgba(255, 153, 0, 0.2);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 11.5px;
+      color: var(--amber);
+      font-family: var(--font-code);
+      margin-top: auto;
+    }
+
+    .system-canvas-container {
+      width: 100%;
+      height: 200px;
+      background: #040507;
+      border: 1px solid var(--border-grey);
+      border-radius: 6px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      touch-action: none;
+    }
+    .system-canvas-container:active { cursor: grabbing; }
+
+    .system-canvas-container canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    .calendar-wrapper {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-grey);
+      border-radius: 12px;
+      padding: 32px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-manifesto {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-grey);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+    .card-manifesto:hover {
+      border-color: var(--amber);
+      transform: translateY(-2px);
+    }
+
+    .manifesto-tag {
+      font-family: var(--font-code);
+      font-size: 10px;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .manifesto-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .manifesto-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ESTILOS DE LA MINIPESTAÑA FLOTANTE / MODAL MODULAR */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(3, 4, 5, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeIn 0.25s ease;
+    }
+    .modal-overlay.active { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-sheet {
+      background: #07080a;
+      border: 1px solid var(--amber);
+      border-radius: 12px;
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(255, 153, 0, 0.2);
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-grey);
+      color: var(--amber);
+      font-family: var(--font-code);
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .modal-close-btn:hover { background: var(--amber); color: #000; }
+
+    .modal-header-tag {
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .modal-modal-canvas {
+      width: 100%;
+      height: 220px;
+      background: #020304;
+      border: 1px solid var(--border-grey);
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .modal-section-h4 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: var(--amber);
+      margin: 20px 0 8px;
+    }
+
+    .modal-copy-p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-grey);
+      background: var(--bg-dark);
+      padding: 30px 16px;
+      font-family: var(--font-code);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 992px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .card[style*="grid-column"] { grid-column: auto !important; }
+      .mobile-menu-btn { display: block; }
+      .top-status-bar { font-size: 9px; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(7, 8, 10, 0.98);
+        border-bottom: 1px solid var(--border-grey);
+        flex-direction: column;
+        padding: 20px; gap: 14px;
+        text-align: left;
+        backdrop-filter: blur(15px);
+      }
+      .nav-links.active { display: flex; }
+      .hero-title { font-size: 28px; }
+      .hero-subtitle { font-size: 13.5px; }
+      .system-canvas-container { height: 180px; }
+      .container { padding: 32px 14px; }
+      .modal-sheet { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR CRT -->
+  <div class="top-status-bar">
+    <div>
+      <span class="status-badge"><span class="status-dot"></span> CLOUD STATUS: OPERATIONAL</span>
+    </div>
+    <div>
+      SYS VER: <span style="color:var(--amber)">3.0.0</span> // BUE
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="brand-logo">
+      <svg width="24" height="24" viewBox="0 0 100 100">
+        <path d="M 15,15 L 85,15 L 85,85 L 35,85 L 35,38 L 65,38 L 65,62" fill="none" stroke="#FF9900" stroke-width="10" stroke-linecap="square"/>
+      </svg>
+      <span>alambre<span style="color:var(--amber)">.digital</span></span>
+    </div>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">MENU // TAB</button>
+
+    <ul class="nav-links" id="nav-links-menu">
+      <li class="nav-item"><a href="#sistemas" onclick="closeMobileMenu()">Sistemas Integrados</a></li>
+      <li class="nav-item"><a href="#alambre-mesh" onclick="closeMobileMenu()">Alambre Mesh</a></li>
+      <li class="nav-item"><a href="#alambre-blueprint" onclick="closeMobileMenu()">Alambre Blueprint</a></li>
+      <li class="nav-item"><a href="#alambre-core" onclick="closeMobileMenu()">Alambre Core</a></li>
+      <li class="nav-item"><a href="#alambre-uptime" onclick="closeMobileMenu()">Alambre Uptime</a></li>
+      <li class="nav-item"><a href="#alambre-funnel" onclick="closeMobileMenu()">Alambre Funnel</a></li>
+      <li class="nav-item"><a href="#resiliencia" onclick="closeMobileMenu()">Garantía Técnica</a></li>
+      <li class="nav-item"><a href="#hablemos-de-frente" onclick="closeMobileMenu()">Filosofía</a></li>
+    </ul>
+
+    <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">AGENDAR</a>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="container hero-section">
+    <h1 class="hero-title">
+      ALAMBRE.DIGITAL // <span style="color:var(--amber)">Arquitectura de Sistemas Integrados</span>
+    </h1>
+    <p class="hero-subtitle">
+      Desarrollamos infraestructura cloud robusta para empresas comerciales, mayoristas y distribuidoras. Conectamos tus canales de venta digital directamente con tu ERP (Tango, Bejerman, SAP) para eliminar la carga manual de datos, evitar quiebres de stock y garantizar consistencia fiscal absoluta.
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="padding: 12px 22px; font-size:12px; width:100%; max-width:280px;">AGENDAR EVALUACIÓN TÉCNICA</a>
+      <a href="#sistemas" class="btn-secondary" style="padding: 12px 22px; font-size:12px; width:100%; max-width:280px;">VER INFRAESTRUCTURA</a>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO DE SOLUCIONES Y SISTEMAS -->
+  <section class="container" id="sistemas">
+    <div class="section-title-wrapper">
+      <span class="section-num">// SECCIÓN 01</span>
+      <h2 class="section-title">Catálogo de Soluciones y Sistemas</h2>
+    </div>
+
+    <div class="grid-2">
+      
+      <!-- SERVICIO 01: ALAMBRE MESH -->
+      <article class="card" id="alambre-mesh">
+        <div class="card-id">📡 SISTEMA 01 // DATA SYNC & INTEGRATION</div>
+        <h2 class="card-code">ALAMBRE MESH</h2>
+        <div class="card-trade-name">El pasador automático de pedidos (Shopify/Woo ⇄ ERP)</div>
+        
+        <div class="system-canvas-container" id="canvas-mesh-01"></div>
+
+        <p class="card-copy">
+          ¿Hoy tu equipo administrativo pasa los pedidos que entran por la web a mano, uno por uno, a Tango Gestión para poder facturar? Eso es un quilombo, pierden tiempo y tipean mal los datos. Alambre Mesh es un puente invisible: apenas un cliente te compra y paga online, el pedido aparece cargado y facturado dentro de tu ERP al segundo, sin que nadie toque una sola tecla.
+        </p>
+        <div class="card-highlight">
+          🔒 SEGURO ANTI-CORTES: Si en tu oficina o depósito se corta internet o la luz, los pedidos no se pierden; se quedan guardados flotando en un búnker digital seguro y se impactan solos apenas vuelve el sistema.
+        </div>
+
+        <button onclick="openServiceModal('mesh')" class="card-explore-btn">
+          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE MESH ➔ ]
+        </button>
+      </article>
+
+      <!-- SERVICIO 02: ALAMBRE BLUEPRINT -->
+      <article class="card" id="alambre-blueprint">
+        <div class="card-id">🗂️ SISTEMA 02 // DATA STRUCTURE & ANALYTICS</div>
+        <h2 class="card-code">ALAMBRE BLUEPRINT</h2>
+        <div class="card-trade-name">Limpieza, saneamiento y unificación de bases de datos</div>
+        
+        <div class="system-canvas-container" id="canvas-mesh-02"></div>
+
+        <p class="card-copy">
+          Si revisás el sistema de tu empresa, seguro tenés al mismo cliente cargado tres veces: una vez con el DNI, otra con el CUIT de la sociedad y otra con un mail viejo. Eso te destruye los números de facturación y nadie sabe quién compra qué. Con Alambre Blueprint entramos con un bisturí digital, barremos la mugre de tus registros históricos y te dejamos la base de datos impecable. Vas a saber con un solo clic quién es el cliente que más plata te deja y qué producto se va a quedar sin stock antes de que pase.
+        </p>
+
+        <button onclick="openServiceModal('blueprint')" class="card-explore-btn">
+          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE BLUEPRINT ➔ ]
+        </button>
+      </article>
+
+      <!-- SERVICIO 03: ALAMBRE CORE -->
+      <article class="card" id="alambre-core">
+        <div class="card-id">🛍️ SISTEMA 03 // CORPORATE E-COMMERCE IMPLEMENTATION</div>
+        <h2 class="card-code">ALAMBRE CORE</h2>
+        <div class="card-trade-name">Tiendas online estructuradas para tu administración y contador</div>
+        
+        <div class="system-canvas-container" id="canvas-mesh-03"></div>
+
+        <p class="card-copy">
+          La mayoría de las agencias de marketing te hacen una página web "linda", pero cuando un cliente te compra, el IVA está mal calculado, los códigos de producto no coinciden con tu depósito y a fin de mes tu contador se quiere pegar un tiro porque los números de la web no cierran con el balance de Tango. Nosotros hacemos tiendas Shopify estructuradas desde el diseño del código para discriminar el IVA de forma perfecta (21% o 10.5%), obligar la captura de datos fiscales reales del cliente en el checkout y asegurar que el impacto contable sea exacto. Cero descuadres, cero multas.
+        </p>
+
+        <button onclick="openServiceModal('core')" class="card-explore-btn">
+          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE CORE ➔ ]
+        </button>
+      </article>
+
+      <!-- SERVICIO 04: ALAMBRE UPTIME -->
+      <article class="card" id="alambre-uptime">
+        <div class="card-id">🔐 SISTEMA 04 // CONTINUOUS SERVICE LEVEL AGREEMENT</div>
+        <h2 class="card-code">ALAMBRE UPTIME</h2>
+        <div class="card-trade-name">El escudo anti-caídas y monitoreo automatizado 24/7</div>
+        
+        <div class="system-canvas-container" id="canvas-mesh-04"></div>
+
+        <p class="card-copy">
+          Si la web se te cae o el sistema de facturación se traba un sábado a la noche en pleno Hot Sale o CyberMonday, te quedás solo, no facturás y perdés millones de pesos. Con Alambre Uptime, nuestros sistemas inteligentes vigilan tus conexiones las 24 horas del día. Si un servidor local intenta fallar o se satura por exceso de compradores, las alarmas de software lo frenan de forma automática para proteger tus datos y nos envían una alerta directa al celular para intervenir de inmediato. Comprás paz mental para que tu negocio nunca deje de facturar.
+        </p>
+
+        <button onclick="openServiceModal('uptime')" class="card-explore-btn">
+          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE UPTIME ➔ ]
+        </button>
+      </article>
+
+      <!-- SERVICIO 05: ALAMBRE FUNNEL -->
+      <article class="card" id="alambre-funnel" style="grid-column: span 2;">
+        <div class="card-id">📈 SISTEMA 05 // CLIENT JOURNEY & FUNNEL ANALYTICS</div>
+        <h2 class="card-code">ALAMBRE FUNNEL</h2>
+        <div class="card-trade-name">Auditoría de Embudo Comercial y Mapa de Conversión B2B</div>
+        
+        <div class="system-canvas-container" id="canvas-mesh-05"></div>
+
+        <p class="card-copy">
+          ¿Sabés exactamente en qué etapa de tu web o proceso de venta se te escapan los clientes? La mayoría de las PyMEs miden el tráfico pero no entienden las fricciones de su checkout ni las caídas entre el interés inicial y la facturación real. Con Alambre Funnel aplicamos un diagnóstico cuantitativo sobre todo el recorrido del comprador: analizamos los puntos de fuga, la captura de datos fiscales en el checkout y la tasa de recompra histórica para entregarte un mapa de optimización claro y orientado a rentabilidad.
+        </p>
+
+        <button onclick="openServiceModal('funnel')" class="card-explore-btn">
+          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE FUNNEL ➔ ]
+        </button>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- RESILIENCIA Y GARANTÍA TÉCNICA -->
+  <section class="container" id="resiliencia">
+    <div class="section-title-wrapper">
+      <span class="section-num">// SECCIÓN 02</span>
+      <h2 class="section-title">Resiliencia y Garantía Técnica</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px;">Protección contra Pérdida de Datos</h3>
+        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6;">
+          Cada pedido que entra a tu e-commerce se encola en una base de datos intermedia blindada. Si tu planta o administración se queda sin luz o internet, la información espera de forma segura en la nube y se impacta sola al restablecer el suministro, sin duplicar facturas ni perder registros.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px;">Código Propio y Propiedad Digital</h3>
+        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6;">
+          No utilizamos plataformas puente ni conectores genéricos de terceros que te cobran un abono perpetuo en dólares por cada pedido que procesás. Desarrollamos tu infraestructura a medida y el código corre en tu propia nube, dándote independencia absoluta de proveedores y el control total de tus activos digitales.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDAR EVALUACIÓN -->
+  <section class="container" id="agendar">
+    <div class="section-title-wrapper">
+      <span class="section-num">// SECCIÓN 03</span>
+      <h2 class="section-title">Agendar Reunión de Evaluación Técnica</h2>
+    </div>
+
+    <div class="calendar-wrapper">
+      <div style="max-width:680px;">
+        <svg width="40" height="40" viewBox="0 0 100 100" style="margin-bottom:12px;">
+          <path d="M 15,15 L 85,15 L 85,85 L 35,85 L 35,38 L 65,38 L 65,62" fill="none" stroke="#FF9900" stroke-width="10" stroke-linecap="square"/>
+        </svg>
+        <h3 style="font-family:var(--font-display); font-size:22px; margin-bottom:10px;">Coordinación de Auditoría con Ingeniería</h3>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:14px;">
+          Evaluamos la topología actual de tus servidores, tu e-commerce y tu ERP contable. Te mostramos el costo exacto de tus ineficiencias operativas y te entregamos un plan de automatización a medida en menos de 20 días, sin interrumpir tu operación diaria.
+        </p>
+        <p style="font-size:12px; color:var(--amber); font-family:var(--font-code); margin-bottom:20px;">
+          Escribinos a <a href="mailto:quiero@alambre.digital" style="text-decoration:underline;">quiero@alambre.digital</a> o reservá tu diagnóstico directamente a continuación.
+        </p>
+
+        <div id="calendar-embed-container" style="background:#040507; border:1px dashed var(--border-grey); padding:24px 16px; border-radius:8px; width:100%; display:flex; flex-direction:column; align-items:center; gap:16px;">
+          <p style="font-family:var(--font-code); font-size:11px; color:var(--amber);">
+            [ BREVO MEETINGS AUTOMATED SYSTEM READY ]
+          </p>
+          
+          <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="font-size:12px; padding:12px 24px;">
+            EMPEZAR A MAPEAR // AGENDAR AUDITORÍA
+          </a>
+
+          <a href="mailto:quiero@alambre.digital" style="font-family:var(--font-code); font-size:11px; color:var(--text-muted); text-decoration:underline; margin-top:8px;">
+            O ESCRIBINOS DIRECTAMENTE A QUIERO@ALAMBRE.DIGITAL
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 04: TARJETAS DE MANIFIESTO -->
+  <section class="container" id="hablemos-de-frente">
+    <div class="section-title-wrapper">
+      <span class="section-num">// SECCIÓN 04</span>
+      <h2 class="section-title">DEJAR DE ATAR CON ALAMBRE // Hablemos de Frente</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="card-manifesto">
+        <div class="manifesto-tag">// ARGUMENTO 01 // IDIOMA REAL</div>
+        <h3 class="manifesto-title">Atado con Alambre vs. Soluciones de Fondo</h3>
+        <p class="manifesto-body">
+          Si sentís que tu operación comercial o tu e-commerce están "atados con alambre", necesitás hablar con alguien que conozca esa realidad de frente. No te vendemos utopías: tomamos esa urgencia por resolver y la transformamos en ingeniería cloud sólida.
+        </p>
+      </div>
+
+      <div class="card-manifesto">
+        <div class="manifesto-tag">// ARGUMENTO 02 // CERO BIRI-BIRI</div>
+        <h3 class="manifesto-title">Sin PowerPoints ni Humo de IA</h3>
+        <p class="manifesto-body">
+          No somos una agencia de marketing que busca encajarte presentaciones de PowerPoint creadas con IA ni aburrirte con reuniones interminables. Nos gusta que las cosas funcionen sin tanto biribiri, con código limpio y resiliencia garantizada.
+        </p>
+      </div>
+
+      <div class="card-manifesto">
+        <div class="manifesto-tag">// ARGUMENTO 03 // VISIÓN INTEGRAL</div>
+        <h3 class="manifesto-title">Una Empresa Tiene Mil Problemas</h3>
+        <p class="manifesto-body">
+          Entendemos que una PyME no vive solo de pauta o redes sociales. Hay problemas con el stock, la carga contable, ARCA y la logística. Para solucionarlos, primero hay que encargar la operación completa, mapearla con precisión y ejecutar.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 36px; text-align: center;">
+      <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="padding: 14px 28px; font-size: 12px; width: 100%; max-width: 360px;">
+        EMPEZAR A MAPEAR PROBLEMAS REALES AHORA
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTENEDOR MODAL PESTAÑA FLOTANTE / EXTENDIDA -->
+  <div class="modal-overlay" id="service-modal" onclick="closeServiceModalOnOverlay(event)">
+    <div class="modal-sheet" id="modal-sheet">
+      <button class="modal-close-btn" onclick="closeServiceModal()">[ CERRAR ✕ ]</button>
+      
+      <div class="modal-header-tag" id="modal-tag">// SISTEMA SPECIFICATION</div>
+      <h2 class="modal-title" id="modal-title">ALAMBRE SYSTEM</h2>
+      
+      <!-- Visualizador Mesh 3D dinámico dentro de la pestaña extendida -->
+      <div class="modal-modal-canvas" id="modal-canvas-box"></div>
+
+      <div id="modal-body-content">
+        <!-- Inyección dinámica de beneficios y ficha técnica de cada producto -->
+      </div>
+
+      <div style="margin-top: 32px; border-top: 1px solid var(--border-grey); padding-top: 20px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-family: var(--font-code); font-size: 11px; color: var(--amber);">¿LISTO PARA IMPLEMENTAR ESTE SISTEMA?</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Coordiná una sesión técnica directa con nuestro equipo.</div>
+        </div>
+        <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">
+          AGENDAR AUDITORÍA DE ESTE SERVICIO
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>ALAMBRE.DIGITAL — ARQUITECTURA DE SISTEMAS INTEGRADOS // BUENOS AIRES // CONTACTO DE CONVERSIÓN: QUIERO@ALAMBRE.DIGITAL // 99.99% UPTIME GUARANTEED.</p>
+  </footer>
+
+  <!-- MOTOR THREE.JS RESPONSIVE + TOUCH MOBILE OPTIMIZED -->
+  <script>
+    const LIME_HEX = 0xccff00;
+
+    function toggleMobileMenu() {
+      document.getElementById('nav-links-menu').classList.toggle('active');
+    }
+    function closeMobileMenu() {
+      document.getElementById('nav-links-menu').classList.remove('active');
+    }
+
+    function buildBaseScene(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return null;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+
+      const scene = new THREE.Scene();
+      const isMobile = window.innerWidth <= 768;
+      const fov = isMobile ? 55 : 45;
+      
+      const camera = new THREE.PerspectiveCamera(fov, w / h, 0.1, 1000);
+      camera.position.set(0, 0, 11);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      container.appendChild(renderer.domElement);
+
+      const group = new THREE.Group();
+      scene.add(group);
+
+      let isDragging = false;
+      let prevPos = { x: 0, y: 0 };
+
+      renderer.domElement.addEventListener('mousedown', e => {
+        isDragging = true;
+        prevPos = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mouseup', () => isDragging = false);
+      renderer.domElement.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        group.rotation.y += (e.clientX - prevPos.x) * 0.008;
+        group.rotation.x += (e.clientY - prevPos.y) * 0.008;
+        prevPos = { x: e.clientX, y: e.clientY };
+      });
+
+      renderer.domElement.addEventListener('touchstart', e => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          prevPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => isDragging = false);
+
+      renderer.domElement.addEventListener('touchmove', e => {
+        if (!isDragging || e.touches.length !== 1) return;
+        const deltaX = e.touches[0].clientX - prevPos.x;
+        const deltaY = e.touches[0].clientY - prevPos.y;
+        group.rotation.y += deltaX * 0.008;
+        group.rotation.x += deltaY * 0.008;
+        prevPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }, { passive: true });
+
+      function resize() {
+        const nw = container.clientWidth;
+        const nh = container.clientHeight;
+        camera.aspect = nw / nh;
+        camera.fov = window.innerWidth <= 768 ? 55 : 45;
+        camera.updateProjectionMatrix();
+        renderer.setSize(nw, nh);
+      }
+
+      window.addEventListener('resize', resize);
+      setTimeout(resize, 100);
+
+      return { scene, camera, renderer, group, isDragging: () => isDragging };
+    }
+
+    function createLimeMesh(geometry) {
+      const wireMat = new THREE.MeshBasicMaterial({ color: LIME_HEX, wireframe: true, transparent: true, opacity: 0.5 });
+      const ptsMat = new THREE.PointsMaterial({ color: LIME_HEX, size: 0.22, transparent: true, opacity: 0.95 });
+      const mesh = new THREE.Mesh(geometry, wireMat);
+      const points = new THREE.Points(geometry, ptsMat);
+      const g = new THREE.Group();
+      g.add(mesh);
+      g.add(points);
+      return { group: g, geometry, mesh, points, ptsMat, wireMat };
+    }
+
+    // BASE DE DATOS DE ESPECIFICACIONES EXTENDIDAS B2B
+    const serviceSpecs = {
+      mesh: {
+        tag: "// SISTEMA 01 // ESPECIFICACIÓN EXTENDIDA",
+        title: "ALAMBRE MESH — Pasador Automático de Pedidos B2B",
+        geomType: "mesh",
+        content: `
+          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
+          <p class="modal-copy-p">Cargar pedidos a mano desde Shopify, WooCommerce o WhatsApp hacia Tango Gestión o SAP genera cuellos de botella diarios, errores tipográficos en el CUIT/DNI y horas perdidas de personal administrativo que debería estar vendiendo.</p>
+          
+          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
+          <p class="modal-copy-p"><b>• Sincronización en 0.4 segundos:</b> Cada venta confirmada impacta de inmediato en el ERP con facturación automática.</p>
+          <p class="modal-copy-p"><b>• Búnker de Resiliencia Cloud:</b> Si tu planta o depósito pierde luz o internet, las ventas flotan de forma segura en la nube y se procesan al restablecer la red.</p>
+          <p class="modal-copy-p"><b>• Cero iPaaS Perpetuos:</b> Desarrollamos código propio que corre en tu nube. No pagás comisiones en dólares por pedido cargado.</p>
+        `
+      },
+      blueprint: {
+        tag: "// SISTEMA 02 // ESPECIFICACIÓN EXTENDIDA",
+        title: "ALAMBRE BLUEPRINT — Saneamiento y Estructura de Datos",
+        geomType: "blueprint",
+        content: `
+          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
+          <p class="modal-copy-p">Tener al mismo cliente registrado con CUIT, DNI y correos diferentes destruye la trazabilidad contable, duplica perfiles de facturación y distorsiona el balance de ventas reales.</p>
+          
+          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
+          <p class="modal-copy-p"><b>• Identificador Único Fiscal:</b> Consolidación de registros bajo CUIT/DNI garantizando auditoría limpia.</p>
+          <p class="modal-copy-p"><b>• Normalización de Históricos:</b> Depuración de registros duplicados en Tango, Bejerman o CRM comerciales.</p>
+          <p class="modal-copy-p"><b>• Predicción de Recompra:</b> Reportes limpios para saber qué cliente genera mayor margen y qué stock se agotará.</p>
+        `
+      },
+      core: {
+        tag: "// SISTEMA 03 // ESPECIFICACIÓN EXTENDIDA",
+        title: "ALAMBRE CORE — E-commerce Estructurado para Administración",
+        geomType: "core",
+        content: `
+          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
+          <p class="modal-copy-p">Las tiendas web tradicionales diseñadas por agencias de marketing suelen descuidar el impacto fiscal: no discriminan IVA correctamente y generan multas y descuadres con el contador a fin de mes.</p>
+          
+          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
+          <p class="modal-copy-p"><b>• Matriz Impositiva Exacta:</b> Discriminación precisa de IVA (21% / 10.5%) y percepción fiscal desde el checkout.</p>
+          <p class="modal-copy-p"><b>• Mapeo EstricTO de SKUs:</b> Sincronización exacta entre el catálogo digital y el inventario físico de tu depósito.</p>
+          <p class="modal-copy-p"><b>• Cierre Contable Automatizado:</b> Cero ajustes manuales entre las pasarelas de pago (Mercado Pago / Stripe) y el balance ERP.</p>
+        `
+      },
+      uptime: {
+        tag: "// SISTEMA 04 // ESPECIFICACIÓN EXTENDIDA",
+        title: "ALAMBRE UPTIME — Monitoreo Preventivo & SLA 24/7",
+        geomType: "uptime",
+        content: `
+          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
+          <p class="modal-copy-p">Una caída de servidor o un fallo en el ERP local durante eventos masivos como Hot Sale o CyberMonday cuesta millones de pesos en ventas no concretadas.</p>
+          
+          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
+          <p class="modal-copy-p"><b>• Monitoreo de Conexión 24/7:</b> Vigilancia activa sobre servidores locales con alertas inmediatas al equipo de ingeniería.</p>
+          <p class="modal-copy-p"><b>• Escudo Anti-Saturación:</b> Control automático de carga para evitar que picos de tráfico tumben tu sistema de facturación.</p>
+          <p class="modal-copy-p"><b>• Guardia Técnica Dedicada:</b> Cobertura de ingeniería durante días de alta demanda comercial.</p>
+        `
+      },
+      funnel: {
+        tag: "// SISTEMA 05 // ESPECIFICACIÓN EXTENDIDA",
+        title: "ALAMBRE FUNNEL — Auditoría de Embudo Comercial B2B",
+        geomType: "funnel",
+        content: `
+          <h4 class="modal-section-h4">¿Por qué lo necesitás en tu empresa?</h4>
+          <p class="modal-copy-p">Muchas PyMEs invierten en pauta y tráfico pero desconocen exactamente en qué paso del checkout o proceso comercial se cae la venta.</p>
+          
+          <h4 class="modal-section-h4">Beneficios Directos & Arquitectura:</h4>
+          <p class="modal-copy-p"><b>• Mapeo de Puntos de Fuga:</b> Diagnóstico cuantitativo sobre la fricción en el carrito y la captura de datos fiscales.</p>
+          <p class="modal-copy-p"><b>• Análisis de Recompra B2B:</b> Medición del LTV (Valor de Vida del Cliente) y tasas de conversión real.</p>
+          <p class="modal-copy-p"><b>• Plan de Acción Cuantitativo:</b> Mapa de optimización claro orientado a rentabilidad sin humo publicitario.</p>
+        `
+      }
+    };
+
+    let activeModalSys = null;
+
+    function openServiceModal(key) {
+      const spec = serviceSpecs[key];
+      if (!spec) return;
+
+      document.getElementById('modal-tag').innerText = spec.tag;
+      document.getElementById('modal-title').innerText = spec.title;
+      document.getElementById('modal-body-content').innerHTML = spec.content;
+      
+      const modal = document.getElementById('service-modal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Render de la Malla 3D dentro del Modal
+      setTimeout(() => {
+        const box = document.getElementById('modal-canvas-box');
+        box.innerHTML = '';
+        activeModalSys = buildBaseScene('modal-canvas-box');
+        if (activeModalSys) {
+          let geom;
+          if (spec.geomType === 'mesh') {
+            const count = 20;
+            geom = new THREE.BufferGeometry();
+            const pos = new Float32Array(count * 3);
+            for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 5;
+            geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            const ptsMat = new THREE.PointsMaterial({ color: LIME_HEX, size: 0.28 });
+            const lineMat = new THREE.LineBasicMaterial({ color: LIME_HEX, transparent: true, opacity: 0.35 });
+            const pts = new THREE.Points(geom, ptsMat);
+            const lineGeom = new THREE.BufferGeometry();
+            const lines = new THREE.LineSegments(lineGeom, lineMat);
+            activeModalSys.group.add(pts);
+            activeModalSys.group.add(lines);
+
+            let t = 0;
+            function loopM() {
+              if (!document.getElementById('service-modal').classList.contains('active')) return;
+              requestAnimationFrame(loopM);
+              t += 0.02;
+              const p = geom.attributes.position;
+              const links = [];
+              for (let i = 0; i < count; i++) {
+                p.setY(i, p.getY(i) + Math.sin(t + i) * 0.01);
+                for (let j = i + 1; j < count; j++) {
+                  if (Math.abs(p.getX(i) - p.getX(j)) < 2.5 && Math.abs(p.getY(i) - p.getY(j)) < 2.5) {
+                    links.push(p.getX(i), p.getY(i), p.getZ(i), p.getX(j), p.getY(j), p.getZ(j));
+                  }
+                }
+              }
+              p.needsUpdate = true;
+              lineGeom.setAttribute('position', new THREE.Float32BufferAttribute(links, 3));
+              if (!activeModalSys.isDragging()) activeModalSys.group.rotation.y += 0.005;
+              activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
+            }
+            loopM();
+          } else if (spec.geomType === 'blueprint') {
+            const elem = createLimeMesh(new THREE.IcosahedronGeometry(3.0, 2));
+            activeModalSys.group.add(elem.group);
+            function loopB() {
+              if (!document.getElementById('service-modal').classList.contains('active')) return;
+              requestAnimationFrame(loopB);
+              if (!activeModalSys.isDragging()) activeModalSys.group.rotation.y += 0.005;
+              activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
+            }
+            loopB();
+          } else if (spec.geomType === 'core') {
+            const sub = createLimeMesh(new THREE.BoxGeometry(2.5, 2.5, 2.5));
+            activeModalSys.group.add(sub.group);
+            function loopC() {
+              if (!document.getElementById('service-modal').classList.contains('active')) return;
+              requestAnimationFrame(loopC);
+              if (!activeModalSys.isDragging()) { activeModalSys.group.rotation.y += 0.005; activeModalSys.group.rotation.x += 0.003; }
+              activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
+            }
+            loopC();
+          } else if (spec.geomType === 'uptime') {
+            const c1 = createLimeMesh(new THREE.BoxGeometry(3.2, 3.2, 3.2));
+            const c2 = createLimeMesh(new THREE.BoxGeometry(1.8, 1.8, 1.8));
+            activeModalSys.group.add(c1.group); activeModalSys.group.add(c2.group);
+            function loopU() {
+              if (!document.getElementById('service-modal').classList.contains('active')) return;
+              requestAnimationFrame(loopU);
+              if (!activeModalSys.isDragging()) { c1.group.rotation.y += 0.004; c2.group.rotation.x -= 0.008; }
+              activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
+            }
+            loopU();
+          } else {
+            const elem = createLimeMesh(new THREE.CylinderGeometry(3.2, 0.5, 4.5, 16, 10, true));
+            activeModalSys.group.add(elem.group);
+            function loopF() {
+              if (!document.getElementById('service-modal').classList.contains('active')) return;
+              requestAnimationFrame(loopF);
+              if (!activeModalSys.isDragging()) activeModalSys.group.rotation.y += 0.007;
+              activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
+            }
+            loopF();
+          }
+        }
+      }, 50);
+    }
+
+    function closeServiceModal() {
+      const modal = document.getElementById('service-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('modal-canvas-box').innerHTML = '';
+      activeModalSys = null;
+    }
+
+    function closeServiceModalOnOverlay(e) {
+      if (e.target.id === 'service-modal') {
+        closeServiceModal();
+      }
+    }
+
+    // INITIALIZADORES ESCENAS PRINCIPALES
+    // 01: ALAMBRE MESH -> Dynamic Node Constellation
+    (function() {
+      const sys = buildBaseScene('canvas-mesh-01');
+      if (!sys) return;
+      const count = 24;
+      const geom = new THREE.BufferGeometry();
+      const pos = new Float32Array(count * 3);
+      for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 6;
+      geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+
+      const ptsMat = new THREE.PointsMaterial({ color: LIME_HEX, size: 0.28 });
+      const lineMat = new THREE.LineBasicMaterial({ color: LIME_HEX, transparent: true, opacity: 0.35 });
+      const pts = new THREE.Points(geom, ptsMat);
+      const lineGeom = new THREE.BufferGeometry();
+      const lines = new THREE.LineSegments(lineGeom, lineMat);
+
+      sys.group.add(pts); sys.group.add(lines);
+      let t = 0;
+      function loop() {
+        requestAnimationFrame(loop);
+        t += 0.02;
+        ptsMat.opacity = 0.6 + Math.sin(t * 4) * 0.35;
+        const p = geom.attributes.position;
+        const links = [];
+        for (let i = 0; i < count; i++) {
+          p.setY(i, p.getY(i) + Math.sin(t + i) * 0.01);
+          for (let j = i + 1; j < count; j++) {
+            if (Math.abs(p.getX(i) - p.getX(j)) < 3 && Math.abs(p.getY(i) - p.getY(j)) < 3) {
+              links.push(p.getX(i), p.getY(i), p.getZ(i), p.getX(j), p.getY(j), p.getZ(j));
+            }
+          }
+        }
+        p.needsUpdate = true;
+        lineGeom.setAttribute('position', new THREE.Float32BufferAttribute(links, 3));
+        if (!sys.isDragging()) sys.group.rotation.y += 0.005;
+        sys.renderer.render(sys.scene, sys.camera);
+      }
+      loop();
+    })();
+
+    // 02: ALAMBRE BLUEPRINT -> Geodesic Reordering
+    (function() {
+      const sys = buildBaseScene('canvas-mesh-02');
+      if (!sys) return;
+      const elem = createLimeMesh(new THREE.IcosahedronGeometry(3.2, 2));
+      sys.group.add(elem.group);
+      const pos = elem.geometry.attributes.position;
+      const orig = pos.clone();
+      let t = 0;
+      function loop() {
+        requestAnimationFrame(loop);
+        t += 0.02;
+        const factor = Math.sin(t);
+        if (factor < 0) {
+          elem.wireMat.opacity = 0;
+          elem.ptsMat.opacity = 0.9;
+          for (let i = 0; i < pos.count; i++) {
+            const noise = Math.sin(i + t * 2) * 0.4;
+            pos.setXYZ(i, orig.getX(i) + noise, orig.getY(i) + noise, orig.getZ(i) + noise);
+          }
+        } else {
+          pos.copy(orig);
+          elem.wireMat.opacity = factor * 0.6;
+          elem.ptsMat.opacity = 0.95;
+        }
+        pos.needsUpdate = true;
+        if (!sys.isDragging()) sys.group.rotation.y += 0.005;
+        sys.renderer.render(sys.scene, sys.camera);
+      }
+      loop();
+    })();
+
+    // 03: ALAMBRE CORE -> Modular CAD Cube (4 cubos lentos)
+    (function() {
+      const sys = buildBaseScene('canvas-mesh-03');
+      if (!sys) return;
+      const cubes = [];
+      const offsets = [
+        { x: -1.2, y: 1.2, z: 0 }, { x: 1.2, y: 1.2, z: 0 },
+        { x: -1.2, y: -1.2, z: 0 }, { x: 1.2, y: -1.2, z: 0 }
+      ];
+      offsets.forEach(off => {
+        const sub = createLimeMesh(new THREE.BoxGeometry(1.5, 1.5, 1.5));
+        sub.group.position.set(off.x, off.y, off.z);
+        sys.group.add(sub.group);
+        cubes.push(sub);
+      });
+      let t = 0;
+      function loop() {
+        requestAnimationFrame(loop);
+        t += 0.012;
+        cubes.forEach((c, idx) => {
+          const factor = Math.sin(t + idx) * 0.3;
+          c.group.position.x = offsets[idx].x + (offsets[idx].x > 0 ? factor : -factor);
+          c.group.position.y = offsets[idx].y + (offsets[idx].y > 0 ? factor : -factor);
+        });
+        if (!sys.isDragging()) {
+          sys.group.rotation.y += 0.003;
+          sys.group.rotation.x += 0.002;
+        }
+        sys.renderer.render(sys.scene, sys.camera);
+      }
+      loop();
+    })();
+
+    // 04: ALAMBRE UPTIME -> Nested Cubes Engine
+    (function() {
+      const sys = buildBaseScene('canvas-mesh-04');
+      if (!sys) return;
+      const c1 = createLimeMesh(new THREE.BoxGeometry(3.6, 3.6, 3.6));
+      const c2 = createLimeMesh(new THREE.BoxGeometry(2.4, 2.4, 2.4));
+      const c3 = createLimeMesh(new THREE.BoxGeometry(1.2, 1.2, 1.2));
+      sys.group.add(c1.group); sys.group.add(c2.group); sys.group.add(c3.group);
+      function loop() {
+        requestAnimationFrame(loop);
+        if (!sys.isDragging()) {
+          c1.group.rotation.y += 0.004;
+          c2.group.rotation.x -= 0.008;
+          c3.group.rotation.z += 0.012;
+        }
+        sys.renderer.render(sys.scene, sys.camera);
+      }
+      loop();
+    })();
+
+    // 05: ALAMBRE FUNNEL -> Paraboloid Surface
+    (function() {
+      const sys = buildBaseScene('canvas-mesh-05');
+      if (!sys) return;
+      const geom = new THREE.CylinderGeometry(3.8, 0.5, 5, 16, 10, true);
+      const elem = createLimeMesh(geom);
+      sys.group.add(elem.group);
+      function loop() {
+        requestAnimationFrame(loop);
+        if (!sys.isDragging()) sys.group.rotation.y += 0.007;
+        sys.renderer.render(sys.scene, sys.camera);
+      }
+      loop();
+    })();
+  </script>
+</body>
+</html>
