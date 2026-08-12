@@ -8,7 +8,41 @@
   <!-- SEO & AI Indexing Meta Tags -->
   <meta name="description" content="Infraestructura cloud redundante e integración e-commerce ERP (Tango, Bejerman, SAP) para empresas comerciales y distribuidoras en Argentina. Cero pérdida de datos.">
   <meta name="keywords" content="integracion tango gestion, shopify erp argentina, automatizacion e-commerce, alambre digital, middleware B2B">
+  <meta name="author" content="ALAMBRE.DIGITAL">
   <link rel="canonical" href="https://alambre.digital/">
+
+  <!-- Open Graph / Miniaturas para WhatsApp, LinkedIn y Redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alambre.digital/">
+  <meta property="og:title" content="ALAMBRE.DIGITAL — Arquitectura de Sistemas Integrados">
+  <meta property="og:description" content="Desarrollamos infraestructura cloud robusta. Conectamos e-commerce con Tango/SAP sin pérdida de datos.">
+  <meta property="og:image" content="https://alambre.digital/assets/og-image.png">
+
+  <!-- Microdatos Schema.org para Autoridad en Buscadores e IAs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "ALAMBRE.DIGITAL",
+    "image": "https://alambre.digital/assets/og-image.png",
+    "@id": "https://alambre.digital",
+    "url": "https://alambre.digital",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "description": "Arquitectura de sistemas integrados y desarrollo de middleware cloud B2B para e-commerce y ERPs."
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
 
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307080A'/><path d='M 18,18 L 82,18 L 82,82 L 38,82 L 38,42 L 62,42' fill='none' stroke='%23FF9900' stroke-width='12' stroke-linecap='square'/></svg>">
@@ -42,6 +76,10 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html {
+      scroll-behavior: smooth; /* Desplazamiento suave para anchors */
+    }
+
     html, body {
       width: 100%;
       max-width: 100%;
@@ -62,6 +100,14 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* CONTENEDOR FIJO QUE SE DESLIZA (STICKY HEADER WRAPPER) */
+    .sticky-header-container {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
     /* Barra Superior CRT */
     .top-status-bar {
       background: rgba(7, 8, 10, 0.95);
@@ -72,9 +118,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1001;
       backdrop-filter: blur(8px);
     }
 
@@ -92,14 +135,11 @@
     /* Header Navigation & Mobile Menu */
     header.main-header {
       border-bottom: 1px solid var(--border-grey);
-      background: rgba(7, 8, 10, 0.85);
+      background: rgba(7, 8, 10, 0.9);
       padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 28px;
-      z-index: 1000;
       backdrop-filter: blur(12px);
       width: 100%;
     }
@@ -244,7 +284,7 @@
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
-      scroll-margin-top: 100px;
+      scroll-margin-top: 110px; /* Offset para no tapar el título con el menú pegajoso */
       width: 100%;
       max-width: 100%;
       overflow: hidden;
@@ -319,7 +359,6 @@
       margin-top: auto;
     }
 
-    /* Contenedor Canvas 3D Optimizado */
     .system-canvas-container {
       width: 100%;
       height: 200px;
@@ -348,6 +387,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      scroll-margin-top: 110px;
     }
 
     .card-manifesto {
@@ -358,6 +398,7 @@
       display: flex;
       flex-direction: column;
       transition: all 0.3s ease;
+      scroll-margin-top: 110px;
     }
     .card-manifesto:hover {
       border-color: var(--amber);
@@ -510,40 +551,48 @@
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR CRT -->
-  <div class="top-status-bar">
-    <div>
-      <span class="status-badge"><span class="status-dot"></span> CLOUD STATUS: OPERATIONAL</span>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- CONTENEDOR STICKY QUE HACE DESLIZAR EL MENÚ CON EL SCROLL -->
+  <div class="sticky-header-container">
+    <!-- BARRA SUPERIOR CRT -->
+    <div class="top-status-bar">
+      <div>
+        <span class="status-badge"><span class="status-dot"></span> CLOUD STATUS: OPERATIONAL</span>
+      </div>
+      <div>
+        SYS VER: <span style="color:var(--amber)">3.0.0</span> // BUE
+      </div>
     </div>
-    <div>
-      SYS VER: <span style="color:var(--amber)">3.0.0</span> // BUE
-    </div>
+
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="brand-logo">
+        <svg width="24" height="24" viewBox="0 0 100 100">
+          <path d="M 15,15 L 85,15 L 85,85 L 35,85 L 35,38 L 65,38 L 65,62" fill="none" stroke="#FF9900" stroke-width="10" stroke-linecap="square"/>
+        </svg>
+        <span>alambre<span style="color:var(--amber)">.digital</span></span>
+      </div>
+
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">MENU // TAB</button>
+
+      <ul class="nav-links" id="nav-links-menu">
+        <li class="nav-item"><a href="#sistemas" onclick="closeMobileMenu()">Sistemas Integrados</a></li>
+        <li class="nav-item"><a href="#alambre-funnel" onclick="closeMobileMenu()">Alambre Funnel ★</a></li>
+        <li class="nav-item"><a href="#alambre-mesh" onclick="closeMobileMenu()">Alambre Mesh</a></li>
+        <li class="nav-item"><a href="#alambre-blueprint" onclick="closeMobileMenu()">Alambre Blueprint</a></li>
+        <li class="nav-item"><a href="#alambre-core" onclick="closeMobileMenu()">Alambre Core</a></li>
+        <li class="nav-item"><a href="#alambre-uptime" onclick="closeMobileMenu()">Alambre Uptime</a></li>
+        <li class="nav-item"><a href="#resiliencia" onclick="closeMobileMenu()">Garantía Técnica</a></li>
+        <li class="nav-item"><a href="#hablemos-de-frente" onclick="closeMobileMenu()">Filosofía</a></li>
+      </ul>
+
+      <!-- BREVO MEETINGS POPUP TRIGGER EN HEADER -->
+      <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">AGENDAR</a>
+    </header>
   </div>
-
-  <!-- HEADER -->
-  <header class="main-header">
-    <div class="brand-logo">
-      <svg width="24" height="24" viewBox="0 0 100 100">
-        <path d="M 15,15 L 85,15 L 85,85 L 35,85 L 35,38 L 65,38 L 65,62" fill="none" stroke="#FF9900" stroke-width="10" stroke-linecap="square"/>
-      </svg>
-      <span>alambre<span style="color:var(--amber)">.digital</span></span>
-    </div>
-
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">MENU // TAB</button>
-
-    <ul class="nav-links" id="nav-links-menu">
-      <li class="nav-item"><a href="#sistemas" onclick="closeMobileMenu()">Sistemas Integrados</a></li>
-      <li class="nav-item"><a href="#alambre-funnel" onclick="closeMobileMenu()">Alambre Funnel ★</a></li>
-      <li class="nav-item"><a href="#alambre-mesh" onclick="closeMobileMenu()">Alambre Mesh</a></li>
-      <li class="nav-item"><a href="#alambre-blueprint" onclick="closeMobileMenu()">Alambre Blueprint</a></li>
-      <li class="nav-item"><a href="#alambre-core" onclick="closeMobileMenu()">Alambre Core</a></li>
-      <li class="nav-item"><a href="#alambre-uptime" onclick="closeMobileMenu()">Alambre Uptime</a></li>
-      <li class="nav-item"><a href="#resiliencia" onclick="closeMobileMenu()">Garantía Técnica</a></li>
-      <li class="nav-item"><a href="#hablemos-de-frente" onclick="closeMobileMenu()">Filosofía</a></li>
-    </ul>
-
-    <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">AGENDAR</a>
-  </header>
 
   <!-- HERO SECTION -->
   <section class="container hero-section">
@@ -566,10 +615,9 @@
       <h2 class="section-title">Catálogo de Soluciones y Sistemas</h2>
     </div>
 
-    <!-- SERVICIO ESTRELLA REPOSICIONADO: ALAMBRE FUNNEL AL INICIO -->
     <div class="grid-2">
       
-      <!-- SERVICIO 05: ALAMBRE FUNNEL (DESTACADO PRINCIPAL) -->
+      <!-- SERVICIO 05: ALAMBRE FUNNEL -->
       <article class="card card-featured" id="alambre-funnel" style="grid-column: span 2;">
         <div class="card-id">📈 SERVICIO ESTRELLA // CLIENT JOURNEY & FUNNEL ANALYTICS</div>
         <h2 class="card-code">ALAMBRE FUNNEL</h2>
@@ -632,12 +680,12 @@
         <div class="system-canvas-container" id="canvas-mesh-03"></div>
 
         <p class="card-copy">
-          La mayoría de las agencias de marketing te hacen una página web "linda", pero cuando un cliente te compra, los datos vienen incompletos, los códigos de producto no coinciden con tu depósito y no sabés si el comprador es un Consumidor Final o un cliente B2B mayorista. Nosotros estructuramos tiendas Shopify desde el código para asegurar la captura real de datos en checkout e identificar con precisión el perfil del cliente.
+          La mayoría de las agencias de marketing te hacen una página web "linda", pero los datos vienen incompletos, los códigos de producto no coinciden con tu depósito y no sabés si el comprador es un Consumidor Final o un mayorista B2B. Nosotros estructuramos tiendas Shopify desde el código para asegurar la captura real de datos en checkout e identificar con precisión el perfil del cliente.
         </p>
 
         <button onclick="openServiceModal('core')" class="card-explore-btn">
           [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE CORE ➔ ]
-        </button>
+        </a>
       </article>
 
       <!-- SERVICIO 04: ALAMBRE UPTIME -->
@@ -709,6 +757,7 @@
             [ BREVO MEETINGS AUTOMATED SYSTEM READY ]
           </p>
           
+          <!-- BREVO MEETINGS EMBEDDED POPUP TRIGGER BUTTON -->
           <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="font-size:12px; padding:12px 24px;">
             EMPEZAR A MAPEAR // AGENDAR AUDITORÍA
           </a>
@@ -753,12 +802,13 @@
         <div class="manifesto-tag">// ARGUMENTO 03 // VISIÓN INTEGRAL</div>
         <h3 class="manifesto-title">Una Empresa Tiene Mil Problemas</h3>
         <p class="manifesto-body">
-          Entendemos que una PyME no vive solo de pauta o redes sociales. Hay problemas con el stock, la carga contable y la logística. Para solucionarlos, primero hay que encargarse de la operación completa, mapearla con precisión y ejecutar.
+          Entendemos que una PyME no vive solo de pauta o redes sociales. Hay problemas con el stock, la carga contable y la logística. Para solucionarlos, primero hay que encargar la operación completa, mapearla con precisión y ejecutar.
         </p>
       </div>
 
     </div>
 
+    <!-- Llamada a la acción final -->
     <div style="margin-top: 36px; text-align: center;">
       <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="padding: 14px 28px; font-size: 12px; width: 100%; max-width: 360px;">
         EMPEZAR A MAPEAR PROBLEMAS REALES AHORA
@@ -766,7 +816,7 @@
     </div>
   </section>
 
-  <!-- CONTENEDOR MODAL PESTAÑA FLOTANTE / EXTENDIDA CON REESTRUCTURACIÓN COMERCIAL DIRECTA -->
+  <!-- CONTENEDOR MODAL PESTAÑA FLOTANTE / EXTENDIDA -->
   <div class="modal-overlay" id="service-modal" onclick="closeServiceModalOnOverlay(event)">
     <div class="modal-sheet" id="modal-sheet">
       <button class="modal-close-btn" onclick="closeServiceModal()">[ CERRAR ✕ ]</button>
@@ -830,6 +880,7 @@
       let isDragging = false;
       let prevPos = { x: 0, y: 0 };
 
+      // Mouse Desktop
       renderer.domElement.addEventListener('mousedown', e => {
         isDragging = true;
         prevPos = { x: e.clientX, y: e.clientY };
@@ -842,6 +893,7 @@
         prevPos = { x: e.clientX, y: e.clientY };
       });
 
+      // Touch Mobile
       renderer.domElement.addEventListener('touchstart', e => {
         if (e.touches.length === 1) {
           isDragging = true;
