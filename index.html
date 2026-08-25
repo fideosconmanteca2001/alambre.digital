@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://alambre.digital/">
   <meta property="og:title" content="ALAMBRE.DIGITAL — Arquitectura de Sistemas Integrados">
   <meta property="og:description" content="Desarrollamos infraestructura cloud robusta. Conectamos e-commerce con Tango/SAP sin pérdida de datos.">
-  <meta property="og:image" content="https://alambre.digital/assets/og-image.png">
+  <meta property="og:image" content="https://alambre.digital/assets/og-image.png">A
 
   <!-- Microdatos Schema.org para Autoridad en Buscadores e IAs -->
   <script type="application/ld+json">
@@ -26,7 +26,6 @@
     "name": "ALAMBRE.DIGITAL",
     "image": "https://alambre.digital/assets/og-image.png",
     "@id": "https://alambre.digital",
-    "url": "https://alambre.digital",
     "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
@@ -47,14 +46,10 @@
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307080A'/><path d='M 18,18 L 82,18 L 82,82 L 38,82 L 38,42 L 62,42' fill='none' stroke='%23FF9900' stroke-width='12' stroke-linecap='square'/></svg>">
 
-  <!-- Brevo Meetings Popup Assets -->
-  <link href="https://meetings.brevo.com/assets/styles/popup.css" rel="stylesheet" />
-  <script src="https://meetings.brevo.com/assets/libs/popup.min.js" type="text/javascript"></script>
-
   <!-- Tipografías Oficiales -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- Three.js Engine (WebGL 3D) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -77,7 +72,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
-      scroll-behavior: smooth; /* Desplazamiento suave para anchors */
+      scroll-behavior: smooth;
     }
 
     html, body {
@@ -100,7 +95,7 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* CONTENEDOR FIJO QUE SE DESLIZA (STICKY HEADER WRAPPER) */
+    /* CONTENEDOR FIJO QUE SE DESLIZA */
     .sticky-header-container {
       position: sticky;
       top: 0;
@@ -132,7 +127,7 @@
       box-shadow: 0 0 8px var(--green-ok);
     }
 
-    /* Header Navigation & Mobile Menu */
+    /* Header Navigation */
     header.main-header {
       border-bottom: 1px solid var(--border-grey);
       background: rgba(7, 8, 10, 0.9);
@@ -243,6 +238,7 @@
       letter-spacing: -0.03em;
       line-height: 1.15;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .hero-subtitle {
@@ -251,12 +247,15 @@
       color: var(--text-muted);
       font-size: 15px;
       line-height: 1.6;
+      text-align: justify;
+      text-align-last: center;
     }
 
     .section-title-wrapper {
       margin-bottom: 32px;
       border-bottom: 1px solid var(--border-grey);
       padding-bottom: 14px;
+      text-align: center;
     }
 
     .section-num {
@@ -264,6 +263,8 @@
       color: var(--amber);
       font-size: 11px;
       letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 4px;
     }
 
     .section-title {
@@ -279,15 +280,16 @@
       background: var(--card-bg);
       border: 1px solid var(--border-grey);
       border-radius: 8px;
-      padding: 24px 16px;
+      padding: 24px 20px;
       position: relative;
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
-      scroll-margin-top: 110px; /* Offset para no tapar el título con el menú pegajoso */
+      scroll-margin-top: 110px;
       width: 100%;
       max-width: 100%;
       overflow: hidden;
+      text-align: center;
     }
     .card:hover {
       border-color: rgba(255, 153, 0, 0.5);
@@ -305,6 +307,7 @@
       font-size: 10px;
       color: var(--text-muted);
       letter-spacing: 0.05em;
+      text-align: center;
     }
 
     .card-code {
@@ -313,6 +316,7 @@
       font-weight: 700;
       color: var(--amber);
       margin: 4px 0 2px;
+      text-align: center;
     }
 
     .card-trade-name {
@@ -321,6 +325,7 @@
       font-weight: 600;
       color: var(--text-main);
       margin-bottom: 12px;
+      text-align: center;
     }
 
     .card-copy {
@@ -328,6 +333,8 @@
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 16px;
+      text-align: justify;
+      text-align-last: center;
     }
 
     .card-explore-btn {
@@ -357,6 +364,8 @@
       color: var(--amber);
       font-family: var(--font-code);
       margin-top: auto;
+      text-align: justify;
+      text-align-last: center;
     }
 
     .system-canvas-container {
@@ -378,16 +387,229 @@
       display: block;
     }
 
-    .calendar-wrapper {
+    /* ESTILOS DE LA TERMINAL DE EVALUACIÓN MULTIPASO */
+    .terminal-container {
       background: var(--bg-dark);
       border: 1px solid var(--border-grey);
       border-radius: 12px;
-      padding: 32px 16px;
+      padding: 32px 20px;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      position: relative;
+      scroll-margin-top: 110px;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-grey);
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+      font-family: var(--font-code);
+      font-size: 11px;
+    }
+
+    .terminal-phase {
+      color: var(--amber);
+      letter-spacing: 0.1em;
+    }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: stepFade 0.25s ease-out; }
+
+    @keyframes stepFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-heading {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
       text-align: center;
+    }
+
+    .step-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .options-grid-roles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .options-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .term-btn-select {
+      background: #0d1017;
+      border: 1px solid var(--border-grey);
+      color: var(--text-main);
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: var(--font-code);
+      font-size: 11.5px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .term-btn-select:hover {
+      border-color: var(--text-muted);
+    }
+    .term-btn-select.selected {
+      border-color: var(--amber);
+      background: rgba(255, 153, 0, 0.08);
+      color: #fff;
+      box-shadow: 0 0 10px var(--amber-glow);
+    }
+
+    .term-checkbox-card {
+      background: #0d1017;
+      border: 1px solid var(--border-grey);
+      color: var(--text-main);
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: var(--font-code);
+      font-size: 11.5px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .term-checkbox-card:hover {
+      border-color: var(--text-muted);
+    }
+    .term-checkbox-card.selected {
+      border-color: var(--amber);
+      background: rgba(255, 153, 0, 0.08);
+      color: #fff;
+      box-shadow: 0 0 10px var(--amber-glow);
+    }
+    .term-checkbox-card .box-indicator {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border-grey);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .term-checkbox-card.selected .box-indicator {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--bg-dark);
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
       display: flex;
       flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .term-input {
+      background: #0d1017;
+      border: 1px solid var(--border-grey);
+      color: #fff;
+      font-family: var(--font-code);
+      font-size: 12px;
+      padding: 12px;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .term-input:focus {
+      border-color: var(--amber);
+    }
+
+    .step-actions {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      scroll-margin-top: 110px;
+      margin-top: 24px;
+    }
+
+    .btn-step-prev {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      font-size: 11px;
+      cursor: pointer;
+      padding: 8px 12px;
+    }
+    .btn-step-prev:hover { color: #fff; }
+
+    .btn-step-next {
+      background: var(--amber);
+      color: var(--bg-dark);
+      border: 1px solid var(--amber);
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-family: var(--font-code);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .btn-step-next:hover {
+      background: transparent;
+      color: var(--amber);
+      box-shadow: 0 0 15px var(--amber-glow);
+    }
+    .btn-step-next:disabled {
+      background: var(--border-grey);
+      border-color: var(--border-grey);
+      color: #555e6c;
+      cursor: not-allowed;
+      box-shadow: none;
     }
 
     .card-manifesto {
@@ -399,6 +621,7 @@
       flex-direction: column;
       transition: all 0.3s ease;
       scroll-margin-top: 110px;
+      text-align: center;
     }
     .card-manifesto:hover {
       border-color: var(--amber);
@@ -411,6 +634,7 @@
       color: var(--amber);
       letter-spacing: 0.1em;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .manifesto-title {
@@ -420,12 +644,15 @@
       color: var(--text-main);
       margin-bottom: 12px;
       line-height: 1.35;
+      text-align: center;
     }
 
     .manifesto-body {
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
+      text-align: justify;
+      text-align-last: center;
     }
 
     /* Modal Flotante */
@@ -459,6 +686,7 @@
       padding: 32px 24px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(255, 153, 0, 0.2);
       position: relative;
+      text-align: center;
     }
 
     .modal-close-btn {
@@ -480,14 +708,16 @@
       font-size: 11px;
       color: var(--amber);
       margin-bottom: 6px;
+      text-align: center;
     }
 
     .modal-title {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       margin-bottom: 16px;
       line-height: 1.2;
+      text-align: center;
     }
 
     .modal-modal-canvas {
@@ -501,9 +731,10 @@
 
     .modal-section-h4 {
       font-family: var(--font-display);
-      font-size: 16px;
+      font-size: 15px;
       color: var(--amber);
       margin: 20px 0 8px;
+      text-align: center;
     }
 
     .modal-copy-p {
@@ -511,6 +742,8 @@
       color: var(--text-muted);
       line-height: 1.7;
       margin-bottom: 12px;
+      text-align: justify;
+      text-align-last: center;
     }
 
     footer {
@@ -526,6 +759,7 @@
 
     @media (max-width: 992px) {
       .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .options-grid, .options-grid-roles, .options-grid-3, .input-grid { grid-template-columns: 1fr; }
       .card[style*="grid-column"] { grid-column: auto !important; }
       .mobile-menu-btn { display: block; }
       .top-status-bar { font-size: 9px; }
@@ -537,7 +771,7 @@
         border-bottom: 1px solid var(--border-grey);
         flex-direction: column;
         padding: 20px; gap: 14px;
-        text-align: left;
+        text-align: center;
         backdrop-filter: blur(15px);
       }
       .nav-links.active { display: flex; }
@@ -580,17 +814,16 @@
 
       <ul class="nav-links" id="nav-links-menu">
         <li class="nav-item"><a href="#sistemas" onclick="closeMobileMenu()">Sistemas Integrados</a></li>
-        <li class="nav-item"><a href="#alambre-funnel" onclick="closeMobileMenu()">Alambre Funnel ★</a></li>
-        <li class="nav-item"><a href="#alambre-mesh" onclick="closeMobileMenu()">Alambre Mesh</a></li>
-        <li class="nav-item"><a href="#alambre-blueprint" onclick="closeMobileMenu()">Alambre Blueprint</a></li>
-        <li class="nav-item"><a href="#alambre-core" onclick="closeMobileMenu()">Alambre Core</a></li>
-        <li class="nav-item"><a href="#alambre-uptime" onclick="closeMobileMenu()">Alambre Uptime</a></li>
+        <li class="nav-item"><a href="#alambre-embudo" onclick="closeMobileMenu()">Alambre Embudo ★</a></li>
+        <li class="nav-item"><a href="#alambre-puente" onclick="closeMobileMenu()">Alambre Puente</a></li>
+        <li class="nav-item"><a href="#alambre-base" onclick="closeMobileMenu()">Alambre Base</a></li>
+        <li class="nav-item"><a href="#alambre-tienda" onclick="closeMobileMenu()">Alambre Tienda</a></li>
+        <li class="nav-item"><a href="#alambre-guardia" onclick="closeMobileMenu()">Alambre Guardia</a></li>
         <li class="nav-item"><a href="#resiliencia" onclick="closeMobileMenu()">Garantía Técnica</a></li>
         <li class="nav-item"><a href="#hablemos-de-frente" onclick="closeMobileMenu()">Filosofía</a></li>
       </ul>
 
-      <!-- BREVO MEETINGS POPUP TRIGGER EN HEADER -->
-      <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">AGENDAR</a>
+      <a href="#agendar" class="btn-cta">EVALUAR INFRAESTRUCTURA</a>
     </header>
   </div>
 
@@ -600,10 +833,10 @@
       ALAMBRE.DIGITAL // <span style="color:var(--amber)">Arquitectura de Sistemas Integrados</span>
     </h1>
     <p class="hero-subtitle">
-      Desarrollamos infraestructura cloud robusta para empresas comerciales, mayoristas y distribuidoras. Conectamos tus canales de venta digital directamente con tu ERP (Tango, Bejerman, SAP) para eliminar la carga manual de datos, evitar quiebres de stock y garantizar consistencia de información.
+      Desarrollamos <b>infraestructura cloud robusta</b> conectando tus tiendas online con tu <b>ERP central (Tango, Bejerman, SAP)</b>. Eliminamos la <b>carga manual de pedidos</b>, liquidamos los <b>quiebres de stock</b> y blindamos tus datos operativos sin margen de error.
     </p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="padding: 12px 22px; font-size:12px; width:100%; max-width:280px;">AGENDAR EVALUACIÓN TÉCNICA</a>
+      <a href="#agendar" class="btn-cta" style="padding: 12px 22px; font-size:12px; width:100%; max-width:280px;">AGENDAR EVALUACIÓN TÉCNICA</a>
       <a href="#sistemas" class="btn-secondary" style="padding: 12px 22px; font-size:12px; width:100%; max-width:280px;">VER INFRAESTRUCTURA</a>
     </div>
   </section>
@@ -617,91 +850,91 @@
 
     <div class="grid-2">
       
-      <!-- SERVICIO 05: ALAMBRE FUNNEL -->
-      <article class="card card-featured" id="alambre-funnel" style="grid-column: span 2;">
-        <div class="card-id">📈 SERVICIO ESTRELLA // CLIENT JOURNEY & FUNNEL ANALYTICS</div>
-        <h2 class="card-code">ALAMBRE FUNNEL</h2>
+      <!-- SERVICIO 05: ALAMBRE EMBUDO -->
+      <article class="card card-featured" id="alambre-embudo" style="grid-column: span 2;">
+        <div class="card-id">📈 SERVICIO ESTRELLA // AUDITORÍA DE CONVERSIÓN</div>
+        <h2 class="card-code">ALAMBRE EMBUDO</h2>
         <div class="card-trade-name">Auditoría de Embudo Comercial y Mapa de Conversión B2B / B2C</div>
         
         <div class="system-canvas-container" id="canvas-mesh-05"></div>
 
         <p class="card-copy">
-          ¿Sabés exactamente en qué etapa de tu web o proceso de venta se te escapan los clientes? La mayoría de las PyMEs gastan plata en pauta y tráfico, pero desconocen dónde se frena el comprador, qué fricciones hay en el checkout o por qué un mayorista no vuelve a comprar. Con Alambre Funnel aplicamos un diagnóstico cuantitativo sobre todo el recorrido: analizamos los puntos de fuga, la captura de datos reales y el comportamiento de recompra para entregarte un mapa de optimización claro y orientado a rentabilidad.
+          Diagnosticamos con precisión matemática <b>dónde se fugan las ventas</b> y por qué tus clientes B2B no recompran. Transformamos el tráfico digital en un <b>flujo medible de facturación</b> eliminando fricciones en el checkout.
         </p>
 
-        <button onclick="openServiceModal('funnel')" class="card-explore-btn">
-          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE FUNNEL ➔ ]
+        <button onclick="openServiceModal('embudo')" class="card-explore-btn">
+          [ EXPLORAR ESPECIFICACIÓN TÉCNICA DE ALAMBRE EMBUDO ➔ ]
         </button>
       </article>
 
-      <!-- SERVICIO 01: ALAMBRE MESH -->
-      <article class="card" id="alambre-mesh">
-        <div class="card-id">📡 SISTEMA 01 // DATA SYNC & INTEGRATION</div>
-        <h2 class="card-code">ALAMBRE MESH</h2>
-        <div class="card-trade-name">El pasador automático de pedidos (Shopify/Woo ⇄ ERP)</div>
+      <!-- SERVICIO 01: ALAMBRE PUENTE -->
+      <article class="card" id="alambre-puente">
+        <div class="card-id">📡 SISTEMA 01 // DATA SYNC & INTEGRACIÓN ERP</div>
+        <h2 class="card-code">ALAMBRE PUENTE</h2>
+        <div class="card-trade-name">Pasador Automático de Pedidos (Shopify/Woo ⇄ ERP)</div>
         
         <div class="system-canvas-container" id="canvas-mesh-01"></div>
 
         <p class="card-copy">
-          ¿Hoy tu equipo administrativo pasa los pedidos que entran por la web a mano, uno por uno, a Tango Gestión? Eso es un quilombo, pierden tiempo y tipean mal los datos. Alambre Mesh es un puente invisible: apenas un cliente te compra y paga online, el pedido aparece cargado dentro de tu ERP al segundo, garantizando que los datos de origen lleguen impecables sin que nadie toque una sola tecla.
+          Sincroniza pedidos pagados directamente con tu <b>Tango, Bejerman o SAP</b> al segundo. Elimina 100% el <b>tipeo administrativo manual</b> y garantiza <b>cero duplicación de comprobantes</b>.
         </p>
         <div class="card-highlight">
-          🔒 SEGURO ANTI-CORTES: Si en tu oficina o depósito se corta internet o la luz, los pedidos no se pierden; se quedan guardados flotando en un búnker digital seguro y se impactan solos apenas vuelve el sistema.
+          🔒 <b>BÚNKER ANTI-CORTES:</b> Si se corta la luz o internet en depósito, los pedidos flotan en cola segura y se impactan solos al volver la red.
         </div>
 
-        <button onclick="openServiceModal('mesh')" class="card-explore-btn">
-          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE MESH ➔ ]
+        <button onclick="openServiceModal('puente')" class="card-explore-btn">
+          [ EXPLORAR ESPECIFICACIÓN TÉCNICA DE ALAMBRE PUENTE ➔ ]
         </button>
       </article>
 
-      <!-- SERVICIO 02: ALAMBRE BLUEPRINT -->
-      <article class="card" id="alambre-blueprint">
-        <div class="card-id">🗂️ SISTEMA 02 // DATA STRUCTURE & ANALYTICS</div>
-        <h2 class="card-code">ALAMBRE BLUEPRINT</h2>
-        <div class="card-trade-name">Limpieza, saneamiento y unificación de bases de datos</div>
+      <!-- SERVICIO 02: ALAMBRE BASE -->
+      <article class="card" id="alambre-base">
+        <div class="card-id">🗂️ SISTEMA 02 // SANEAMIENTO DE DATOS</div>
+        <h2 class="card-code">ALAMBRE BASE</h2>
+        <div class="card-trade-name">Limpieza, Saneamiento y Unificación de Bases de Datos</div>
         
         <div class="system-canvas-container" id="canvas-mesh-02"></div>
 
         <p class="card-copy">
-          Si revisás el sistema de tu empresa, seguro tenés al mismo cliente cargado tres veces: una vez con el DNI, otra con el CUIT de la sociedad y otra con un mail viejo. Eso te destruye los números y nadie sabe quién compra qué. Con Alambre Blueprint entramos con un bisturí digital, barremos la mugre de tus registros históricos y te dejamos la base de datos impecable bajo un identificador único contable.
+          Unificamos clientes triplicados bajo un <b>identificador único contable (CUIT/DNI)</b>. Barremos la mugre de tu historial para darte <b>métricas fidedignas de stock y rentabilidad</b>.
         </p>
 
-        <button onclick="openServiceModal('blueprint')" class="card-explore-btn">
-          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE BLUEPRINT ➔ ]
+        <button onclick="openServiceModal('base')" class="card-explore-btn">
+          [ EXPLORAR ESPECIFICACIÓN TÉCNICA DE ALAMBRE BASE ➔ ]
         </button>
       </article>
 
-      <!-- SERVICIO 03: ALAMBRE CORE -->
-      <article class="card" id="alambre-core">
-        <div class="card-id">🛍️ SISTEMA 03 // CORPORATE E-COMMERCE IMPLEMENTATION</div>
-        <h2 class="card-code">ALAMBRE CORE</h2>
-        <div class="card-trade-name">Tiendas online estructuradas para la captura exacta de datos</div>
+      <!-- SERVICIO 03: ALAMBRE TIENDA -->
+      <article class="card" id="alambre-tienda">
+        <div class="card-id">🛍️ SISTEMA 03 // E-COMMERCE ESTRUCTURADO</div>
+        <h2 class="card-code">ALAMBRE TIENDA</h2>
+        <div class="card-trade-name">Tiendas Online Estructuradas para Captura Exacta de Datos</div>
         
         <div class="system-canvas-container" id="canvas-mesh-03"></div>
 
         <p class="card-copy">
-          La mayoría de las agencias de marketing te hacen una página web "linda", pero los datos vienen incompletos, los códigos de producto no coinciden con tu depósito y no sabés si el comprador es un Consumidor Final o un mayorista B2B. Nosotros estructuramos tiendas Shopify desde el código para asegurar la captura real de datos en checkout e identificar con precisión el perfil del cliente.
+          Desarrollamos tiendas Shopify estructuradas para <b>captura fiscal exacta (Factura A / Consumidor Final)</b>. Sincronización milimétrica de <b>SKUs y listas de precios mayoristas</b>.
         </p>
 
-        <button onclick="openServiceModal('core')" class="card-explore-btn">
-          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE CORE ➔ ]
-        </a>
+        <button onclick="openServiceModal('tienda')" class="card-explore-btn">
+          [ EXPLORAR ESPECIFICACIÓN TÉCNICA DE ALAMBRE TIENDA ➔ ]
+        </button>
       </article>
 
-      <!-- SERVICIO 04: ALAMBRE UPTIME -->
-      <article class="card" id="alambre-uptime">
-        <div class="card-id">🔐 SISTEMA 04 // CONTINUOUS SERVICE LEVEL AGREEMENT</div>
-        <h2 class="card-code">ALAMBRE UPTIME</h2>
-        <div class="card-trade-name">Red de seguridad, backup automatizado de procesos y soporte</div>
+      <!-- SERVICIO 04: ALAMBRE GUARDIA -->
+      <article class="card" id="alambre-guardia">
+        <div class="card-id">🔐 SISTEMA 04 // CONTINUIDAD & RESGUARDO</div>
+        <h2 class="card-code">ALAMBRE GUARDIA</h2>
+        <div class="card-trade-name">Red de Seguridad, Backup de Procesos y Soporte Crítico</div>
         
         <div class="system-canvas-container" id="canvas-mesh-04"></div>
 
         <p class="card-copy">
-          Pagarle a alguien para que esté mirando una pantalla 24 horas es un gasto absurdo. Alambre Uptime es un sistema automático de respaldo de procesos: si tu servidor local se traba, se cae la red o falla un envío de datos, nuestra red de seguridad captura el evento, lo resguarda y lo reintenta automáticamente. Sumado a nuestro soporte de ingeniería directo para cuando necesitás resolver algo en serio.
+          Monitoreo automatizado con <b>reintento inteligente de transacciones</b> ante caídas de servidor. Soporte directo de <b>ingeniería sin intermediarios</b> ni mesas de ayuda lentas.
         </p>
 
-        <button onclick="openServiceModal('uptime')" class="card-explore-btn">
-          [ EXPLORAR FICHA TÉCNICA EXTENDIDA DE ALAMBRE UPTIME ➔ ]
+        <button onclick="openServiceModal('guardia')" class="card-explore-btn">
+          [ EXPLORAR ESPECIFICACIÓN TÉCNICA DE ALAMBRE GUARDIA ➔ ]
         </button>
       </article>
 
@@ -717,56 +950,216 @@
 
     <div class="grid-2">
       <div class="card">
-        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px;">Protección contra Pérdida de Datos</h3>
-        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6;">
-          Cada pedido que entra a tu e-commerce se encola en una base de datos intermedia blindada. Si tu planta o administración se queda sin luz o internet, la información espera de forma segura en la nube y se impacta sola al restablecer el suministro, sin duplicar registros ni perder ventas.
+        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px; text-align:center;">Protección contra Pérdida de Datos</h3>
+        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6; text-align:justify; text-align-last:center;">
+          Cada pedido se encola en una <b>base intermedia blindada con persistencia transaccional</b>. Ante cortes de energía o conectividad en depósito, la información se procesa automáticamente al restablecerse sin generar <b>duplicados ni registros huérfanos</b>.
         </p>
       </div>
 
       <div class="card">
-        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px;">Código Propio y Propiedad Digital</h3>
-        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6;">
-          No utilizamos plataformas puente ni conectores genéricos de terceros que te cobran un abono perpetuo en dólares por cada pedido que procesás. Desarrollamos tu infraestructura a medida y el código corre en tu propia nube, dándote independencia absoluta de proveedores y el control total de tus activos digitales.
+        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--amber); margin-bottom:10px; text-align:center;">Código Propio e Independencia Digital</h3>
+        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6; text-align:justify; text-align-last:center;">
+          No empleamos conectores genéricos que cobran comisiones en dólares por transacción procesada. Implementamos <b>código propio en tu infraestructura cloud</b>, garantizando <b>soberanía sobre tus bases de datos</b> y costos operativos fijos.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- AGENDAR EVALUACIÓN CON EMBED DE BREVO MEETINGS -->
+  <!-- SECCIÓN 03: TERMINAL DE EVALUACIÓN TÉCNICA MULTIPASO -->
   <section class="container" id="agendar">
     <div class="section-title-wrapper">
       <span class="section-num">// SECCIÓN 03</span>
-      <h2 class="section-title">Agendar Reunión de Evaluación Técnica</h2>
+      <h2 class="section-title">Terminal de Evaluación de Arquitectura</h2>
     </div>
 
-    <div class="calendar-wrapper">
-      <div style="max-width:680px;">
-        <svg width="40" height="40" viewBox="0 0 100 100" style="margin-bottom:12px;">
-          <path d="M 15,15 L 85,15 L 85,85 L 35,85 L 35,38 L 65,38 L 65,62" fill="none" stroke="#FF9900" stroke-width="10" stroke-linecap="square"/>
-        </svg>
-        <h3 style="font-family:var(--font-display); font-size:22px; margin-bottom:10px;">Coordinación de Auditoría con Ingeniería</h3>
-        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:14px;">
-          Evaluamos la topología actual de tus servidores, tu e-commerce y tu ERP contable. Te mostramos el costo exacto de tus ineficiencias operativas y te entregamos un plan de automatización a medida en menos de 20 días, sin interrumpir tu operación diaria.
-        </p>
-        <p style="font-size:12px; color:var(--amber); font-family:var(--font-code); margin-bottom:20px;">
-          Escribinos a <a href="mailto:quiero@alambre.digital" style="text-decoration:underline;">quiero@alambre.digital</a> o reservá tu diagnóstico directamente a continuación.
-        </p>
+    <div class="terminal-container">
+      <div class="terminal-header">
+        <span class="terminal-phase" id="terminal-phase-label">FASE [01/03] // ROL & TOPOLOGÍA DE SISTEMAS</span>
+        <span style="color:var(--text-muted);">HOST: ALAMBRE-CORE-API</span>
+      </div>
 
-        <div id="calendar-embed-container" style="background:#040507; border:1px dashed var(--border-grey); padding:24px 16px; border-radius:8px; width:100%; display:flex; flex-direction:column; align-items:center; gap:16px;">
-          <p style="font-family:var(--font-code); font-size:11px; color:var(--amber);">
-            [ BREVO MEETINGS AUTOMATED SYSTEM READY ]
+      <!-- FORMULARIO MULTIPASO -->
+      <form id="evaluation-form" onsubmit="handleFormSubmit(event)">
+        
+        <!-- PASO 1: ROL & STACK -->
+        <div class="form-step active" id="form-step-1">
+          <div class="step-heading">01 // ROL & TOPOLOGÍA DE SISTEMAS</div>
+          <div class="step-sub">Seleccioná tu posición en la empresa y el stack sobre el que operan:</div>
+
+          <label style="display:block; font-family:var(--font-code); font-size:11px; color:var(--amber); margin-bottom:8px; text-transform:uppercase; text-align:center;">
+            Tu Cargo / Rol Principal:
+          </label>
+          <div class="options-grid-roles">
+            <button type="button" class="term-btn-select" onclick="selectOption('role', 'Director General / Dueño / Socio', this)">
+              <span>Director General / Dueño</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('role', 'Gerente de Operaciones / COO', this)">
+              <span>Operaciones / COO</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('role', 'E-commerce Manager / Digital Lead', this)">
+              <span>E-commerce / Digital</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('role', 'Finanzas / Administración', this)">
+              <span>Finanzas / Admin</span>
+            </button>
+            <button type="button" class="term-btn-select" style="grid-column: span 2;" onclick="selectOption('role', 'Líder Técnico / CTO / IT', this)">
+              <span>Líder Técnico / CTO / IT</span>
+            </button>
+          </div>
+
+          <label style="display:block; font-family:var(--font-code); font-size:11px; color:var(--amber); margin-bottom:8px; text-transform:uppercase; margin-top:16px; text-align:center;">
+            Sistema Contable / ERP Central:
+          </label>
+          <div class="options-grid">
+            <button type="button" class="term-btn-select" onclick="selectOption('erp', 'Tango Gestión', this)">
+              <span>Tango Gestión</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('erp', 'Bejerman ERP', this)">
+              <span>Bejerman ERP</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('erp', 'SAP / Business One', this)">
+              <span>SAP / SAP B1</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('erp', 'Otro / Propio', this)">
+              <span>Otro / Propio</span>
+            </button>
+          </div>
+
+          <label style="display:block; font-family:var(--font-code); font-size:11px; color:var(--amber); margin-bottom:8px; text-transform:uppercase; margin-top:16px; text-align:center;">
+            Frontend / E-commerce:
+          </label>
+          <div class="options-grid">
+            <button type="button" class="term-btn-select" onclick="selectOption('ecommerce', 'Shopify', this)">
+              <span>Shopify / Plus</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('ecommerce', 'WooCommerce', this)">
+              <span>WooCommerce</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('ecommerce', 'VTEX', this)">
+              <span>VTEX</span>
+            </button>
+            <button type="button" class="term-btn-select" onclick="selectOption('ecommerce', 'Multi-canal / Custom', this)">
+              <span>Multi-canal / Custom</span>
+            </button>
+          </div>
+
+          <div class="step-actions" style="justify-content:flex-end;">
+            <button type="button" id="btn-next-1" class="btn-step-next" disabled onclick="goToStep(2)">
+              SIGUIENTE: DIAGNÓSTICO DE DOLORES →
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 2: SELECCIÓN MÚLTIPLE DE DOLORES & ESCALA -->
+        <div class="form-step" id="form-step-2">
+          <div class="step-heading">02 // DIAGNÓSTICO OPERATIVO & ESCALA</div>
+          <div class="step-sub">Marcá todos los desafíos que hoy frenan tu operación (selección múltiple):</div>
+
+          <label style="display:block; font-family:var(--font-code); font-size:11px; color:var(--amber); margin-bottom:8px; text-transform:uppercase; text-align:center;">
+            Puntos Críticos de Fricción (Podés elegir varios):
+          </label>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:20px;">
+            <div class="term-checkbox-card" onclick="togglePainPoint('Carga manual de pedidos y facturación lenta', this)">
+              <div class="box-indicator"></div>
+              <span><b>Carga manual de pedidos:</b> El equipo administrativo pasa pedidos a mano de la web al ERP.</span>
+            </div>
+            <div class="term-checkbox-card" onclick="togglePainPoint('Descuadre de stock entre depósito y e-commerce', this)">
+              <div class="box-indicator"></div>
+              <span><b>Descuadres de stock:</b> Sobreventas o diferencias entre el inventario del depósito y la tienda digital.</span>
+            </div>
+            <div class="term-checkbox-card" onclick="togglePainPoint('Pérdida de datos o pedidos por caídas de internet/servidor', this)">
+              <div class="box-indicator"></div>
+              <span><b>Cortes de red y caídas:</b> Si se corta internet en el depósito, los pedidos se traban o duplican.</span>
+            </div>
+            <div class="term-checkbox-card" onclick="togglePainPoint('Bases de clientes sucias y registros duplicados', this)">
+              <div class="box-indicator"></div>
+              <span><b>Bases de datos duplicadas:</b> Clientes cargados con DNI, CUIT o mails viejos que ensucian balances.</span>
+            </div>
+            <div class="term-checkbox-card" onclick="togglePainPoint('Inconsistencias fiscales en checkout (IVA / Factura A)', this)">
+              <div class="box-indicator"></div>
+              <span><b>Fricción fiscal en checkout:</b> Descuadre con el contador por mal cálculo de IVA (21% / 10.5%).</span>
+            </div>
+            <div class="term-checkbox-card" onclick="togglePainPoint('Fuga de ventas en checkout y baja recompra', this)">
+              <div class="box-indicator"></div>
+              <span><b>Fuga en embudo comercial:</b> Alto tráfico pero baja tasa de conversión y nula recompra mayorista.</span>
+            </div>
+          </div>
+
+          <label style="display:block; font-family:var(--font-code); font-size:11px; color:var(--amber); margin-bottom:8px; text-transform:uppercase; text-align:center;">
+            Volumen Mensual de Pedidos:
+          </label>
+          <div class="options-grid-3">
+            <button type="button" class="term-btn-select" style="text-align:center; justify-content:center;" onclick="selectOption('volume', '< 500 pedidos/mes', this)">
+              <span>&lt; 500/mes</span>
+            </button>
+            <button type="button" class="term-btn-select" style="text-align:center; justify-content:center;" onclick="selectOption('volume', '500 a 2.500 pedidos/mes', this)">
+              <span>500 a 2.500</span>
+            </button>
+            <button type="button" class="term-btn-select" style="text-align:center; justify-content:center;" onclick="selectOption('volume', '> 2.500 pedidos/mes', this)">
+              <span>&gt; 2.500/mes</span>
+            </button>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-step-prev" onclick="goToStep(1)">← VOLVER</button>
+            <button type="button" id="btn-next-2" class="btn-step-next" disabled onclick="goToStep(3)">
+              SIGUIENTE: DATOS DE INGENIERÍA →
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 3: DATOS DE CONTACTO -->
+        <div class="form-step" id="form-step-3">
+          <div class="step-heading">03 // COORDINACIÓN DE AUDITORÍA</div>
+          <div class="step-sub">Ingresá tus datos corporativos para despachar el informe preliminar:</div>
+
+          <div class="input-grid">
+            <div class="input-group">
+              <label>Nombre y Apellido *</label>
+              <input type="text" id="input-name" class="term-input" placeholder="Ej. Martín Alvarez" required oninput="validateStep3()">
+            </div>
+            <div class="input-group">
+              <label>Email Corporativo *</label>
+              <input type="email" id="input-email" class="term-input" placeholder="nombre@empresa.com" required oninput="validateStep3()">
+            </div>
+            <div class="input-group">
+              <label>WhatsApp Directo *</label>
+              <input type="tel" id="input-phone" class="term-input" placeholder="+54 9 11 ...." required oninput="validateStep3()">
+            </div>
+            <div class="input-group">
+              <label>Sitio Web / URL Tienda *</label>
+              <input type="text" id="input-web" class="term-input" placeholder="empresa.com" required oninput="validateStep3()">
+            </div>
+          </div>
+
+          <div id="form-error-box" style="display:none; padding:10px; background:rgba(239,68,68,0.1); border:1px solid #ef4444; border-radius:4px; color:#ef4444; font-family:var(--font-code); font-size:11px; margin-bottom:16px;"></div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-step-prev" onclick="goToStep(2)">← VOLVER</button>
+            <button type="submit" id="btn-submit" class="btn-step-next" disabled>
+              TRANSMITIR PARÁMETROS // INICIAR EVALUACIÓN
+            </button>
+          </div>
+        </div>
+
+        <!-- ESTADO DE ÉXITO -->
+        <div class="form-step" id="form-step-success" style="text-align:center; padding: 24px 0;">
+          <div style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:50%; background:rgba(255,153,0,0.1); border:1px solid var(--amber); color:var(--amber); font-size:24px; margin-bottom:16px;">
+            ✓
+          </div>
+          <div style="font-family:var(--font-display); font-size:22px; font-weight:700; color:#fff; margin-bottom:8px; text-align:center;">
+            [ESTADO: PARÁMETROS REGISTRADOS CORRECTAMENTE]
+          </div>
+          <p style="font-size:13.5px; color:var(--text-muted); max-width:600px; margin:0 auto 24px; line-height:1.6; text-align:justify; text-align-last:center;">
+            Registramos la topología de tus sistemas y puntos de fricción. El paso final es reservar tu <b>sesión técnica directa de 20 minutos</b> para trazar el mapa de integración.
           </p>
           
-          <!-- BREVO MEETINGS EMBEDDED POPUP TRIGGER BUTTON -->
-          <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="font-size:12px; padding:12px 24px;">
-            EMPEZAR A MAPEAR // AGENDAR AUDITORÍA
-          </a>
-
-          <a href="mailto:quiero@alambre.digital" style="font-family:var(--font-code); font-size:11px; color:var(--text-muted); text-decoration:underline; margin-top:8px;">
-            O ESCRIBINOS DIRECTAMENTE A QUIERO@ALAMBRE.DIGITAL
+          <a id="success-cal-btn" href="https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting" target="_blank" class="btn-cta" style="padding:14px 28px; font-size:12px;">
+            RESERVAR SESIÓN EN CALENDARIO TÉCNICO →
           </a>
         </div>
-      </div>
+
+      </form>
     </div>
   </section>
 
@@ -784,16 +1177,16 @@
         <div class="manifesto-tag">// ARGUMENTO 01 // IDIOMA REAL</div>
         <h3 class="manifesto-title">Atado con Alambre vs. Soluciones de Fondo</h3>
         <p class="manifesto-body">
-          Si sentís que tu operación comercial o tu e-commerce están "atados con alambre", necesitás hablar con alguien que conozca esa realidad de frente. No te vendemos utopías: tomamos esa urgencia por resolver y la transformamos en ingeniería cloud sólida.
+          Si sentís que tu operativa comercial está atada con parches temporales, necesitás <b>hablar con quien conoce el barro operativo</b>. Convertimos la improvisación diaria en <b>arquitectura cloud sólida y escalable</b>.
         </p>
       </div>
 
       <!-- Tarjeta 2 -->
       <div class="card-manifesto">
         <div class="manifesto-tag">// ARGUMENTO 02 // CERO BIRI-BIRI</div>
-        <h3 class="manifesto-title">Sin PowerPoints ni Humo de IA</h3>
+        <h3 class="manifesto-title">Sin PowerPoints ni Humo Teórico</h3>
         <p class="manifesto-body">
-          No somos una agencia de marketing que busca encajarte presentaciones de PowerPoint creadas con IA ni aburrirte con reuniones interminables. Nos gusta que las cosas funcionen sin tanto biribiri, con código limpio y resiliencia garantizada.
+          No somos una agencia que busca deslumbrarte con diapositivas vacías ni promesas infladas de IA. Resolvemos problemas reales con <b>código limpio, endpoints estables y trazabilidad absoluta</b>.
         </p>
       </div>
 
@@ -802,7 +1195,7 @@
         <div class="manifesto-tag">// ARGUMENTO 03 // VISIÓN INTEGRAL</div>
         <h3 class="manifesto-title">Una Empresa Tiene Mil Problemas</h3>
         <p class="manifesto-body">
-          Entendemos que una PyME no vive solo de pauta o redes sociales. Hay problemas con el stock, la carga contable y la logística. Para solucionarlos, primero hay que encargar la operación completa, mapearla con precisión y ejecutar.
+          Una PyME no se arregla únicamente con pauta digital. Hay <b>descalces de stock, fricción contable y cuellos logísticos</b>. Mapeamos la operación completa antes de tirar una sola línea de código.
         </p>
       </div>
 
@@ -810,7 +1203,7 @@
 
     <!-- Llamada a la acción final -->
     <div style="margin-top: 36px; text-align: center;">
-      <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta" style="padding: 14px 28px; font-size: 12px; width: 100%; max-width: 360px;">
+      <a href="#agendar" class="btn-cta" style="padding: 14px 28px; font-size: 12px; width: 100%; max-width: 360px;">
         EMPEZAR A MAPEAR PROBLEMAS REALES AHORA
       </a>
     </div>
@@ -829,24 +1222,128 @@
       <div id="modal-body-content"></div>
 
       <div style="margin-top: 32px; border-top: 1px solid var(--border-grey); padding-top: 20px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
-        <div>
+        <div style="text-align: left;">
           <div style="font-family: var(--font-code); font-size: 11px; color: var(--amber);">¿LISTO PARA RESOLVER ESTE PROBLEMA DE FONDO?</div>
           <div style="font-size: 12px; color: var(--text-muted);">Sin compromisos ni PowerPoints. Auditoría técnica directa.</div>
         </div>
-        <a href="" onclick="BrevoBookingPage.initStaticButton({ url: 'https://meet.brevo.com/sesion-de-evaluacion-tecnica/borderless?l=30-minute-meeting' });return false;" class="btn-cta">
-          AGENDAR AUDITORÍA
+        <a href="#agendar" onclick="closeServiceModal()" class="btn-cta">
+          EVALUAR CASO
         </a>
       </div>
     </div>
   </div>
 
   <footer>
-    <p>ALAMBRE.DIGITAL — ARQUITECTURA DE SISTEMAS INTEGRADOS // BUENOS AIRES // CONTACTO DE CONVERSIÓN: QUIERO@ALAMBRE.DIGITAL // 99.99% UPTIME GUARANTEED.</p>
+    <p>ALAMBRE.DIGITAL — ARQUITECTURA DE SISTEMAS INTEGRADOS // BUENOS AIRES // CONTACTO: QUIERO@ALAMBRE.DIGITAL // 99.99% UPTIME GUARANTEED.</p>
   </footer>
 
-  <!-- MOTOR THREE.JS RESPONSIVE + TOUCH MOBILE OPTIMIZED -->
+  <!-- MOTOR THREE.JS RESPONSIVE + LÓGICA DE FORMULARIO -->
   <script>
     const LIME_HEX = 0xccff00;
+
+    /* LÓGICA DEL FORMULARIO MULTI-PASO */
+    const state = {
+      role: '',
+      erp: '',
+      ecommerce: '',
+      painPoints: [],
+      volume: '',
+      name: '',
+      email: '',
+      phone: '',
+      web: ''
+    };
+
+    function selectOption(category, value, el) {
+      state[category] = value;
+      const parent = el.parentElement;
+      parent.querySelectorAll('.term-btn-select').forEach(btn => btn.classList.remove('selected'));
+      el.classList.add('selected');
+
+      if (category === 'role' || category === 'erp' || category === 'ecommerce') {
+        document.getElementById('btn-next-1').disabled = !(state.role && state.erp && state.ecommerce);
+      }
+      if (category === 'volume') {
+        document.getElementById('btn-next-2').disabled = !(state.painPoints.length > 0 && state.volume);
+      }
+    }
+
+    function togglePainPoint(painText, el) {
+      const idx = state.painPoints.indexOf(painText);
+      if (idx > -1) {
+        state.painPoints.splice(idx, 1);
+        el.classList.remove('selected');
+        el.querySelector('.box-indicator').innerText = '';
+      } else {
+        state.painPoints.push(painText);
+        el.classList.add('selected');
+        el.querySelector('.box-indicator').innerText = '✓';
+      }
+      document.getElementById('btn-next-2').disabled = !(state.painPoints.length > 0 && state.volume);
+    }
+
+    function goToStep(stepNumber) {
+      document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
+      document.getElementById(`form-step-${stepNumber}`).classList.add('active');
+
+      const phaseLabel = document.getElementById('terminal-phase-label');
+      if (stepNumber === 1) phaseLabel.innerText = 'FASE [01/03] // ROL & TOPOLOGÍA DE SISTEMAS';
+      if (stepNumber === 2) phaseLabel.innerText = 'FASE [02/03] // DIAGNÓSTICO OPERATIVO & ESCALA';
+      if (stepNumber === 3) phaseLabel.innerText = 'FASE [03/03] // COORDINACIÓN DE AUDITORÍA';
+    }
+
+    function validateStep3() {
+      state.name = document.getElementById('input-name').value.trim();
+      state.email = document.getElementById('input-email').value.trim();
+      state.phone = document.getElementById('input-phone').value.trim();
+      state.web = document.getElementById('input-web').value.trim();
+
+      const isValid = state.name && state.email && state.phone && state.web;
+      document.getElementById('btn-submit').disabled = !isValid;
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('btn-submit');
+      const errBox = document.getElementById('form-error-box');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'TRANSMITIENDO DATOS...';
+      errBox.style.display = 'none';
+
+      try {
+        const payload = {
+          fullName: state.name,
+          companyEmail: state.email,
+          whatsapp: state.phone,
+          companyWebsite: state.web,
+          cargo: state.role,
+          erp: state.erp,
+          ecommerce: state.ecommerce,
+          dolores: state.painPoints.join(', '),
+          volume: state.volume
+        };
+
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          throw new Error('Error al sincronizar con el servidor.');
+        }
+
+        document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
+        document.getElementById('form-step-success').classList.add('active');
+        document.getElementById('terminal-phase-label').innerText = 'FASE [COMPLETADA] // PARÁMETROS REGISTRADOS';
+      } catch (err) {
+        errBox.innerText = 'Error al enviar los datos. Por favor intentá nuevamente o escribinos a quiero@alambre.digital';
+        errBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'TRANSMITIR PARÁMETROS // INICIAR EVALUACIÓN';
+      }
+    }
 
     function toggleMobileMenu() {
       document.getElementById('nav-links-menu').classList.toggle('active');
@@ -880,7 +1377,6 @@
       let isDragging = false;
       let prevPos = { x: 0, y: 0 };
 
-      // Mouse Desktop
       renderer.domElement.addEventListener('mousedown', e => {
         isDragging = true;
         prevPos = { x: e.clientX, y: e.clientY };
@@ -893,7 +1389,6 @@
         prevPos = { x: e.clientX, y: e.clientY };
       });
 
-      // Touch Mobile
       renderer.domElement.addEventListener('touchstart', e => {
         if (e.touches.length === 1) {
           isDragging = true;
@@ -938,73 +1433,76 @@
       return { group: g, geometry, mesh, points, ptsMat, wireMat };
     }
 
-    // BASE DE DATOS REESTRUCTURADA CON ARGUMENTOS DE VENTA DIRECTOS Y REALES
+    /* ESPECIFICACIONES TÉCNICAS EXTENDIDAS DE ALTA DENSIDAD */
     const serviceSpecs = {
-      funnel: {
+      embudo: {
         tag: "// SISTEMA 05 // SERVICIO ESTRELLA // FICHA EXTENDIDA",
-        title: "ALAMBRE FUNNEL — Auditoría de Embudo Comercial B2B / B2C",
-        geomType: "funnel",
+        title: "ALAMBRE EMBUDO — Auditoría de Embudo Comercial B2B / B2C",
+        geomType: "embudo",
         content: `
-          <h4 class="modal-section-h4">El Problema Real en tus Ventas:</h4>
-          <p class="modal-copy-p">Gastás plata en pauta o redes pero no entendés por qué la gente llega a la web y se va sin comprar. Medís visitas pero no tenés idea de dónde se frena el usuario, por qué un cliente B2B abandona el carrito o por qué no te vuelven a comprar.</p>
+          <h4 class="modal-section-h4">Diagnóstico del Punto Crítico Comercial:</h4>
+          <p class="modal-copy-p">Las empresas suelen gastar presupuestos crecientes en <b>adquisición de tráfico y pauta publicitaria</b>, pero desconocen con precisión técnica en qué paso específico de la navegación se produce el abandono del carrito o la deserción de cuentas mayoristas.</p>
           
-          <h4 class="modal-section-h4">Solución Comercial & Mapa de Acción:</h4>
-          <p class="modal-copy-p"><b>• Diagnóstico Cuantitativo Completo:</b> Analizamos todo el recorrido del comprador desde la entrada hasta la confirmación para detectar los puntos exactos de fuga.</p>
-          <p class="modal-copy-p"><b>• Identificación de Fricciones en Checkout:</b> Eliminamos pasos innecesarios que hacen perder compras impulsivas o pedidos de mayoristas.</p>
-          <p class="modal-copy-p"><b>• Estrategia de Recompra:</b> Medición del comportamiento histórico para activar flujo constante de venta recurrente.</p>
+          <h4 class="modal-section-h4">Metodología Cuantitativa de Auditoría:</h4>
+          <p class="modal-copy-p"><b>• Mapeo de Eventos en Tiempo Real:</b> Trazabilidad punta a punta para detectar cuellos de botella exactos, errores en pasarelas de pago y caídas de sesión.</p>
+          <p class="modal-copy-p"><b>• Depuración de Checkout B2B:</b> Simplificación drástica de los campos de entrada fiscal, validación instantánea de CUIT y automatización de listas de precios especiales.</p>
+          <p class="modal-copy-p"><b>• Arquitectura de Recompra Recurrente:</b> Identificación de patrones históricos de compra para activar secuencias comerciales de retención con alta probabilidad de conversión.</p>
         `
       },
-      mesh: {
+      puente: {
         tag: "// SISTEMA 01 // FICHA TÉCNICA EXTENDIDA",
-        title: "ALAMBRE MESH — Pasador Automático de Pedidos (Shopify/Woo ⇄ ERP)",
-        geomType: "mesh",
+        title: "ALAMBRE PUENTE — Integración y Sincronización Automática ERP ⇄ E-commerce",
+        geomType: "puente",
         content: `
-          <h4 class="modal-section-h4">El Problema Real en tu Oficina:</h4>
-          <p class="modal-copy-p">Tu gente se equivoca tipeando. ¿Cuántos errores cometieron este mes al pasar pedidos a mano? Si estás leyendo esto es porque sabés de algunos, pero imaginate los que ni te enteraste: productos mal cargados y horas perdidas tipeando datos que ya entraron digitales.</p>
+          <h4 class="modal-section-h4">Eliminación de la Carga Administrativa Manual:</h4>
+          <p class="modal-copy-p">El ingreso manual de pedidos desde tiendas online (<b>Shopify, WooCommerce, VTEX</b>) hacia el sistema contable (<b>Tango Gestión, Bejerman, SAP</b>) insume decenas de horas operativas y genera errores sistemáticos en facturación, precios y asignación de depósitos.</p>
           
-          <h4 class="modal-section-h4">Garantía de Integración & Cero Duplicados:</h4>
-          <p class="modal-copy-p"><b>• Cero Tipeo Manual:</b> El pedido entra tal cual lo pagó el cliente online y aparece listo dentro de Tango, Bejerman o SAP al instante.</p>
-          <p class="modal-copy-p"><b>• Resiliencia Anti-Cortes:</b> Si en tu depósito se corta internet o la luz, los datos flotan en un búnker digital seguro y se impactan solos apenas vuelve la red, previniendo duplicados.</p>
-          <p class="modal-copy-p"><b>• Sin Apps Fantasma en Dólares:</b> No te encajamos 5 conectores genéricos que cobran comisiones por pedido. Es código propio en tu nube respaldado por nuestro soporte técnico mensual.</p>
+          <h4 class="modal-section-h4">Arquitectura Transaccional Blindada:</h4>
+          <p class="modal-copy-p"><b>• Ingesta Automática de Pedidos:</b> Tan pronto se confirma una compra digital, los datos se parsean e inyectan automáticamente en el ERP con desglose exacto de alícuotas de IVA y percepciones.</p>
+          <p class="modal-copy-p"><b>• Persistencia con Colas de Mensajería:</b> Si el servidor central o la red local pierden conectividad, los pedidos aguardan en un <b>búnker intermedio redundante</b>, evitando duplicaciones al reconectar.</p>
+          <p class="modal-copy-p"><b>• Código Propietario en Tu Servidor:</b> Sin intermediarios ni comisiones periódicas por pedido procesado. Tu empresa conserva la propiedad total del middleware.</p>
         `
       },
-      blueprint: {
+      base: {
         tag: "// SISTEMA 02 // FICHA TÉCNICA EXTENDIDA",
-        title: "ALAMBRE BLUEPRINT — Saneamiento y Estructura de Datos",
-        geomType: "blueprint",
+        title: "ALAMBRE BASE — Saneamiento y Unificación Estructural de Bases de Datos",
+        geomType: "base",
         content: `
-          <h4 class="modal-section-h4">El Problema Real en tu Sistema:</h4>
-          <p class="modal-copy-p">Tenés al mismo cliente cargado 4 veces con CUIT, DNI y correos diferentes. Tu sistema es un cementerio de datos duplicados y tu equipo pierde horas buscando fichas reales mientras nadie sabe quién compra qué.</p>
+          <h4 class="modal-section-h4">El Problema de la Fragmentación de Registros:</h4>
+          <p class="modal-copy-p">La convivencia de múltiples canales de venta suele degenerar en <b>bases de datos fragmentadas</b>, donde un mismo cliente corporativo coexiste bajo múltiples registros debido a diferencias de tipeo en mails, razones sociales o DNI.</p>
           
-          <h4 class="modal-section-h4">Eficacia Garantizada:</h4>
-          <p class="modal-copy-p"><b>• Identificador Único Contable:</b> Entramos con un bisturí digital, barremos la mugre de tus registros históricos y unificamos todo bajo el CUIT/DNI real del comprador.</p>
-          <p class="modal-copy-p"><b>• Información Relevante para Tomar Decisiones:</b> Al limpiar tu base de datos, sabés con un solo clic quién es el cliente que más plata te deja y qué producto se va a agotar antes de que pase.</p>
+          <h4 class="modal-section-h4">Protocolo de Normalización y Limpieza:</h4>
+          <p class="modal-copy-p"><b>• Identificador Único de Cuenta:</b> Estandarización de tablas históricas vinculadas estrictamente al identificador fiscal real (<b>CUIT/DNI verificado</b>).</p>
+          <p class="modal-copy-p"><b>• Eliminación de Entidades Huérfanas:</b> Limpieza quirúrgica de duplicados, corrección de inconsistencias en catálogos de artículos y saneamiento de saldos contables.</p>
+          <p class="modal-copy-p"><b>• Visibilidad Directa para Toma de Decisiones:</b> Generación de vistas consolidadas para conocer el LTV real por cliente y la rotación certera por familia de productos.</p>
         `
       },
-      core: {
+      tienda: {
         tag: "// SISTEMA 03 // FICHA TÉCNICA EXTENDIDA",
-        title: "ALAMBRE CORE — Tiendas E-commerce ESTRUCTURADAS para Captura Real de Datos",
-        geomType: "core",
+        title: "ALAMBRE TIENDA — Implementación E-commerce Estructurada para B2B / B2C",
+        geomType: "tienda",
         content: `
-          <h4 class="modal-section-h4">El Problema Real con las Agencias Tradicionales:</h4>
-          <p class="modal-copy-p">Las agencias de marketing te hacen una página web "linda", pero los datos vienen incompletos, los códigos de producto no coinciden con tu depósito y no sabés si el comprador es un Consumidor Final o un mayorista B2B.</p>
+          <h4 class="modal-section-h4">Superando las Limitaciones de las Tiendas Tradicionales:</h4>
+          <p class="modal-copy-p">La mayoría de los desarrollos web estándar priorizan exclusivamente lo estético, descuidando la <b>estructura fiscal del checkout</b> y generando descuadres de stock masivos con los depósitos reales de la compañía.</p>
           
-          <h4 class="modal-section-h4">Estructura de Código de Verdad:</h4>
-          <p class="modal-copy-p"><b>• Captura Exacta en Checkout:</b> Obligamos la captura de datos reales del cliente e identificamos de entrada si es B2B o Consumidor Final.</p>
-          <p class="modal-copy-p"><b>• Sincronización Estricta de SKUs:</b> Cero descuadres entre el catálogo digital de Shopify/WooCommerce y el inventario real de tu depósito.</p>
+          <h4 class="modal-section-h4">Ingeniería de Frontend Adaptada al Negocio:</h4>
+          <p class="modal-copy-p"><b>• Captura Fiscal Automatizada:</b> Validación algorítmica de CUIT y régimen impositivo en el checkout para emisión de <b>Factura A o B</b> sin intervención humana posterior.</p>
+          <p class="modal-copy-p"><b>• Estricta Coherencia de SKUs:</b> Mapeo uno a uno de variantes, talles y combos asegurando que el stock publicado refleje en tiempo real la disponibilidad en estantería.</p>
+          <p class="modal-copy-p"><b>• Arquitectura Headless / Optimizada:</b> Velocidad de carga ultrarrápida diseñada para maximizar tasas de conversión y reducir abandonos por demoras técnicas.</p>
         `
       },
-      uptime: {
+      guardia: {
         tag: "// SISTEMA 04 // FICHA TÉCNICA EXTENDIDA",
-        title: "ALAMBRE UPTIME — Red de Seguridad, Backup de Procesos y Soporte",
-        geomType: "uptime",
+        title: "ALAMBRE GUARDIA — Monitoreo Continuo, Backup de Eventos y Soporte Crítico",
+        geomType: "guardia",
         content: `
-          <h4 class="modal-section-h4">El Problema Real:</h4>
-          <p class="modal-copy-p">Pagarle a un empleado para que esté mirando una pantalla las 24 horas es un gasto absurdo. Pero si el servidor se traba un fin de semana, necesitás una red que responda sola.</p>
+          <h4 class="modal-section-h4">Continuidad Operativa Sin Fallas Silenciosas:</h4>
+          <p class="modal-copy-p">Una integración que falla durante eventos de alta demanda o en días no laborables destruye la confianza del comprador y genera descalces de caja irreparables si no existe una respuesta automática inmediata.</p>
           
-          <h4 class="modal-section-h4">Resguardo Automático & Respuesta Directa:</h4>
-          <p class="modal-copy-p"><b>• Backup de Procesos Automático:</b> Si la red local o el ERP se traban, el sistema resguarda cada transacción y la reintenta automáticamente al restablecerse.</p>
-          <p class="modal-copy-p"><b>• Soporte de Ingeniería Real:</b> Tenés comunicación directa con la gente que programó tu sistema para resolver problemas operativos cuando importan.</p>
+          <h4 class="modal-section-h4">Protocolos de Resiliencia y SLA:</h4>
+          <p class="modal-copy-p"><b>• Monitoreo y Reintentos Automáticos:</b> Algoritmos de supervisión constante que resguardan y reintentan transacciones fallidas de forma autónoma.</p>
+          <p class="modal-copy-p"><b>• Trazabilidad y Logs Estructurados:</b> Auditoría completa de cada paquete de datos transmitido entre la tienda y el ERP para resolución inmediata de disputas.</p>
+          <p class="modal-copy-p"><b>• Canal Directo con Ingeniería:</b> Acceso directo a los desarrolladores del sistema para resolver eventualidades complejas sin pasar por bots de soporte.</p>
         `
       }
     };
@@ -1028,10 +1526,9 @@
         box.innerHTML = '';
         activeModalSys = buildBaseScene('modal-canvas-box');
         if (activeModalSys) {
-          let geom;
-          if (spec.geomType === 'mesh') {
+          if (spec.geomType === 'puente') {
             const count = 20;
-            geom = new THREE.BufferGeometry();
+            const geom = new THREE.BufferGeometry();
             const pos = new Float32Array(count * 3);
             for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 5;
             geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -1064,7 +1561,7 @@
               activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
             }
             loopM();
-          } else if (spec.geomType === 'blueprint') {
+          } else if (spec.geomType === 'base') {
             const elem = createLimeMesh(new THREE.IcosahedronGeometry(3.0, 2));
             activeModalSys.group.add(elem.group);
             function loopB() {
@@ -1074,7 +1571,7 @@
               activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
             }
             loopB();
-          } else if (spec.geomType === 'core') {
+          } else if (spec.geomType === 'tienda') {
             const sub = createLimeMesh(new THREE.BoxGeometry(2.5, 2.5, 2.5));
             activeModalSys.group.add(sub.group);
             function loopC() {
@@ -1084,7 +1581,7 @@
               activeModalSys.renderer.render(activeModalSys.scene, activeModalSys.camera);
             }
             loopC();
-          } else if (spec.geomType === 'uptime') {
+          } else if (spec.geomType === 'guardia') {
             const c1 = createLimeMesh(new THREE.BoxGeometry(3.2, 3.2, 3.2));
             const c2 = createLimeMesh(new THREE.BoxGeometry(1.8, 1.8, 1.8));
             activeModalSys.group.add(c1.group); activeModalSys.group.add(c2.group);
@@ -1124,8 +1621,7 @@
       }
     }
 
-    // INITIALIZADORES ESCENAS PRINCIPALES
-    // 01: ALAMBRE MESH -> Dynamic Node Constellation
+    // INICIALIZADORES DE ESCENAS PRINCIPALES
     (function() {
       const sys = buildBaseScene('canvas-mesh-01');
       if (!sys) return;
@@ -1165,7 +1661,6 @@
       loop();
     })();
 
-    // 02: ALAMBRE BLUEPRINT -> Geodesic Reordering
     (function() {
       const sys = buildBaseScene('canvas-mesh-02');
       if (!sys) return;
@@ -1197,7 +1692,6 @@
       loop();
     })();
 
-    // 03: ALAMBRE CORE -> Modular CAD Cube (4 cubos lentos)
     (function() {
       const sys = buildBaseScene('canvas-mesh-03');
       if (!sys) return;
@@ -1230,7 +1724,6 @@
       loop();
     })();
 
-    // 04: ALAMBRE UPTIME -> Nested Cubes Engine
     (function() {
       const sys = buildBaseScene('canvas-mesh-04');
       if (!sys) return;
@@ -1250,7 +1743,6 @@
       loop();
     })();
 
-    // 05: ALAMBRE FUNNEL -> Paraboloid Surface
     (function() {
       const sys = buildBaseScene('canvas-mesh-05');
       if (!sys) return;
