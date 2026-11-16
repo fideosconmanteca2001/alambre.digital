@@ -780,6 +780,21 @@
       .system-canvas-container { height: 180px; }
       .container { padding: 32px 14px; }
       .modal-sheet { padding: 24px 16px; }
+
+      /* ANCLAJE DEL FORMULARIO EN MOBILE PARA QUE NO SALTE LA PÁGINA */
+      .terminal-container {
+        min-height: 640px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-anchor: none;
+        padding: 24px 16px;
+      }
+
+      /* EVITA EL ZOOM AUTOMÁTICO DEL CELULAR AL TOCAR LOS CAMPOS */
+      .term-input {
+        font-size: 16px !important;
+      }
     }
   </style>
 </head>
@@ -1290,6 +1305,14 @@
       if (stepNumber === 1) phaseLabel.innerText = 'FASE [01/03] // TU ROL & HERRAMIENTAS ACTUALES';
       if (stepNumber === 2) phaseLabel.innerText = 'FASE [02/03] // QUÉ TE FRENA HOY EN EL DÍA A DÍA';
       if (stepNumber === 3) phaseLabel.innerText = 'FASE [03/03] // COORDINEMOS UNA REUNIÓN DIRECTA';
+
+      // Mantiene la caja anclada en vista en pantallas móviles
+      if (window.innerWidth <= 992) {
+        const terminal = document.querySelector('.terminal-container');
+        if (terminal) {
+          terminal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
 
     function validateStep3() {
@@ -1345,6 +1368,13 @@
         document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
         document.getElementById('form-step-success').classList.add('active');
         document.getElementById('terminal-phase-label').innerText = 'FASE [COMPLETADA] // LISTO PARA CHARLAR';
+
+        if (window.innerWidth <= 992) {
+          const terminal = document.querySelector('.terminal-container');
+          if (terminal) {
+            terminal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       } catch (err) {
         errBox.innerText = 'Error al enviar los datos. Por favor intentá nuevamente o escribinos directo a quiero@alambre.digital';
         errBox.style.display = 'block';
